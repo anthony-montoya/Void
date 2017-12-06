@@ -8,7 +8,7 @@ import Login from './Login/Login.js'
 
 export default (
     <Switch>
-        <Route component={landing} exact path='/'/>
+        <Route component={Landing} path='/' exact/>
         <Route component={Login} path='/login' />
 
     </Switch>

@@ -4,7 +4,7 @@ class Landing extends Component {
     render() {
         return (
             <div>
-                VOID BATTLES LANDING PAGE BASIC COMPONENT READY TO GO.
+                <p>VOID BATTLES LANDING PAGE BASIC COMPONENT READY TO GO.</p>
             </div>
         );
     }
