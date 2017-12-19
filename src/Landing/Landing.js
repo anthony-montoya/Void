@@ -4,7 +4,7 @@ import './Landing.css'
 class Landing extends Component {
     render() {
         return (
-            <div>
+            <div className='landing-page-main-wrapper'>
                 <div className='Left-side-nav-bar'>
                     <div className='logo-wrapper'>   
                         <div className='logo'> <span className='void-white'>VOID-</span><span className='void-red'>BATTLES</span> </div>
@@ -14,7 +14,12 @@ class Landing extends Component {
                     </div>
                     <div className='nav-links'> Profile </div>
                     <div className='nav-links'> Dashboard </div>
-                </div> 
+                </div>
+                <div className='landing-page-content' >
+                    <div className='landing-ad' > </div>
+
+                
+                </div>
             </div>
         );
     }
