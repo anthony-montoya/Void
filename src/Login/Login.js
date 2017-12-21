@@ -3,14 +3,16 @@ import './Login.css'
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
+import { toggleLogin, toggleSignup } from '.././ducks/reducer'
 
 class Login extends Component {
     render() {
+        console.log(this.props.login)
     if (this.props.login){
         return (
             <div className='login-wrapper'>
                 <div className='login-box'>
-                    <div className='sign-up'> LOGIN </div>
+                    <div className='sign-up'> <span>LOGIN </span>  /  <span onClick={this.props.toggleLogin}> SIGNUP </span> </div>
                     <div className='username'><div className='input-id'> UserName* </div>   <input className='username-input' type='text' /> </div>
                     <div className='username'><div className='input-id'> Password* </div>   <input className='username-input' type='text' /> </div>
                 </div>
@@ -20,7 +22,7 @@ class Login extends Component {
         return(
             <div className='login-wrapper'>
                 <div className='login-box'>
-                    <div className='sign-up'> SIGN UP </div>
+                    <div className='sign-up'> <span onClick={this.props.toggleSignup}> LOGIN </span>   /   <span> SIGN UP </span> </div>
                     <div className='username'><div className='input-id'> UserName* </div>   <input className='username-input' type='text' /> </div>
                     <div className='username'><div className='input-id'> Email* </div>   <input className='username-input' type='text' /> </div>
                     <div className='username'><div className='input-id'> Password* </div> <input className='username-input' type='text' /> </div>
@@ -39,7 +41,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps( dispatch ) {
-    return bindActionCreators({ }, dispatch )
+    return bindActionCreators({ toggleLogin, toggleSignup }, dispatch )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

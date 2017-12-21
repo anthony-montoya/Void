@@ -1,12 +1,33 @@
 import axios from 'axios'
 
+const LOGIN = 'LOGIN';
+const SIGNUP = 'SIGNUP'
+
 let initialState = {
     login: true,
 }
 
+export function toggleLogin(){
+    console.log('lololol')
+    return {
+        type: LOGIN,
+        payload: !initialState.login
+    }
+}
+
+export function toggleSignup(){
+    return {
+        type: SIGNUP,
+        payload: initialState.login = true
+    }
+}
+
 function reducer(state = initialState , action){
     switch(action.type){
-        
+        case LOGIN:
+         return Object.assign({}, state, {login: action.payload});
+         case SIGNUP:
+         return Object.assign({}, state, {login: action.payload})
 
     }
     return state;

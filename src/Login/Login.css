@@ -11,7 +11,7 @@
 }
 
 .sign-up{
-    font-size: 50px;
+    font-size: 35px;
     height: 50px;
     width: 100%;
     color: white;
@@ -20,6 +20,8 @@
     align-items: center;
     margin-top: 15px;
     border-bottom: 1px lightgray solid;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .login-box{
