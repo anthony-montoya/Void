@@ -22,6 +22,11 @@ export function toggleSignup(){
     }
 }
 
+export function logIn(userInfo){
+   console.log(userInfo)
+   
+}
+
 function reducer(state = initialState , action){
     switch(action.type){
         case LOGIN:

@@ -45,7 +45,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    margin-top: 15%;
 }
 
 .username-input{
@@ -60,8 +60,27 @@
 }
 
 .input-id{
-    width: 30%;
+    width: 20%;
     height: 20px;
     color: white;
 
+}
+
+.login-options{
+    cursor: pointer;
+}
+
+.selected-option{
+    border-bottom: thick solid orangered;
+    cursor: pointer;
+}
+
+
+.confirm-button{
+    margin-top: 15%;
+    margin-left: 5%;
+    border-style: none;
+    background-color: lightslategray;
+    height: 5%;
+    width: 30%;
 }
