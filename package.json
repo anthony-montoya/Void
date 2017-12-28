@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "express": "^4.16.2",
+    "massive": "^4.5.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
@@ -20,7 +21,7 @@
     "eject": "react-scripts eject"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
-  "main": "server/server.js",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Void-Battles/Void.git"

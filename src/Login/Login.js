@@ -3,7 +3,7 @@ import './Login.css'
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
-import { toggleLogin, toggleSignup, logIn } from '.././ducks/reducer'
+import { toggleLogin, toggleSignup, registerUser } from '.././ducks/reducer'
 
 class Login extends Component {
     constructor(){
@@ -78,7 +78,7 @@ class Login extends Component {
                     <div className='username'><div className='input-id'> Email* </div>   <input onChange={(e) => this.emailSignup(e)} className='username-input' type='text' /> </div>
                     <div className='username'><div className='input-id'> Password* </div> <input onChange={(e) => this.passwordSignup(e)} className='username-input' type='text' /> </div>
                     <div className='username'><div className='input-id'> Uplay UserName* </div> <input onChange={(e) => this.uplaySignup(e)} className='username-input' type='text' /> </div>
-                    <button className='confirm-button' onClick={() => logIn(this.state.userinfo)}> Signup </button>
+                    <button className='confirm-button' onClick={() => registerUser(this.state.userinfo)}> Signup </button>
                 </div>
             </div>
         )
@@ -93,7 +93,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps( dispatch ) {
-    return bindActionCreators({ toggleLogin, toggleSignup, logIn }, dispatch )
+    return bindActionCreators({ toggleLogin, toggleSignup, registerUser }, dispatch )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
