@@ -18,7 +18,10 @@ class Landing extends Component {
                     <div className='nav-links'> Dashboard </div>
                 </div>
                 <div className='landing-page-content' >
-                    <div className='landing-ad' > </div>
+                <div className='landing-ad' >
+                    <h1 className='section-heading'> Upload Clips </h1>
+                    <iframe className='i-frame-ad' src="https://www.youtube.com/embed/6G-J9Jk0-bQ" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                </div>
 
                 
                 </div>
