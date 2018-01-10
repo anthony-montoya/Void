@@ -13,16 +13,15 @@ class Landing extends Component {
                     </div> 
                     <div className='signup-login-wrapper'>   
                     <Link to='/login'> <div className='nav-links'> Login/Sign-Up </div> </Link>
-                    </div>
-                    <div className='nav-links'> Profile </div>
+                </div>
+                    <Link to='/profile'> <div className='nav-links'> Profile </div> </Link>
                     <div className='nav-links'> Dashboard </div>
                 </div>
                 <div className='landing-page-content' >
                 <div className='landing-ad' >
-                    <h1 className='section-heading'> Upload Clips </h1>
-                    <iframe className='i-frame-ad' src="https://www.youtube.com/embed/6G-J9Jk0-bQ" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                        <h1 className='section-heading'> Upload Clips </h1>
+                        <iframe className='i-frame-ad' src="https://www.youtube.com/embed/6G-J9Jk0-bQ" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
                 </div>
-
                 
                 </div>
             </div>
