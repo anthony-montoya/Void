@@ -12,6 +12,5 @@ export default (
         <Route component={Landing} path='/' exact/>
         <Route component={Login} path='/login' />
         <Route component={Profile} path='/profile' />
-
     </Switch>
 )
