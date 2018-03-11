@@ -14,7 +14,8 @@ class Login extends Component {
             email: '',
             password: '',
             uplay: ''
-         }
+        },
+        login: false
     }
 }
 
