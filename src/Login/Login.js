@@ -34,7 +34,7 @@ class Login extends Component {
             return (
                 <div className='login-wrapper'>
                     <div className='login-box'>
-                        <div className='sign-up'> <span className='selected-option' onClick={this.handleLogin}>LOGIN </span>  /  <span className='login-options'  onClick={this.handleLogin}> SIGNUP </span> </div>
+                        <div className='sign-up'> <span className='selected-option'>LOGIN </span>  /  <span className='login-options'  onClick={this.handleLogin}> SIGNUP </span> </div>
                         <div className='username'><div className='input-id'> UserName* </div>   <input className='username-input' type='text' /> </div>
                         <div className='username'><div className='input-id'> Password* </div>   <input className='username-input' type='text' /> </div>
                     </div>
@@ -44,7 +44,7 @@ class Login extends Component {
             return (
                 <div className='login-wrapper'>
                     <div className='login-box'>
-                        <div className='sign-up'> <span className='login-options' onClick={this.handleLogin}> LOGIN </span>   /   <span className='selected-option' onClick={this.handleLogin}> SIGNUP </span> </div>
+                        <div className='sign-up'> <span className='login-options' onClick={this.handleLogin}> LOGIN </span>   /   <span className='selected-option' > SIGNUP </span> </div>
                         <div className='username'>
                             <div className='input-id'> UserName* </div>   
                             <input onChange={(e) => this.handleState('username', e.target.value)} className='username-input' type='text' /> 
