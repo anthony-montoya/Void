@@ -34,7 +34,7 @@ class Login extends Component {
             return (
                 <div className='login-wrapper'>
                     <div className='login-box'>
-                        <div className='sign-up'> <span className='selected-option' onClick={this.handleLogin}>LOGIN </span>  /  <span className='login-options' onClick={this.props.toggleLogin} onClick={this.handleLogin}> SIGNUP </span> </div>
+                        <div className='sign-up'> <span className='selected-option' onClick={this.handleLogin}>LOGIN </span>  /  <span className='login-options'  onClick={this.handleLogin}> SIGNUP </span> </div>
                         <div className='username'><div className='input-id'> UserName* </div>   <input className='username-input' type='text' /> </div>
                         <div className='username'><div className='input-id'> Password* </div>   <input className='username-input' type='text' /> </div>
                     </div>
@@ -46,13 +46,22 @@ class Login extends Component {
                     <div className='login-box'>
                         <div className='sign-up'> <span className='login-options' onClick={this.handleLogin}> LOGIN </span>   /   <span className='selected-option' onClick={this.handleLogin}> SIGNUP </span> </div>
                         <div className='username'>
-                        <div className='input-id'> UserName* </div>   
-                        <input onChange={(e) => this.handleState('username', e.target.value)} className='username-input' type='text' /> 
+                            <div className='input-id'> UserName* </div>   
+                            <input onChange={(e) => this.handleState('username', e.target.value)} className='username-input' type='text' /> 
                         </div>
-                        <div className='username'><div className='input-id'> Email* </div>   <input onChange={(e) => this.handleState('email', e.target.value)} className='username-input' type='text' /> </div>
-                        <div className='username'><div className='input-id'> Password* </div> <input onChange={(e) => this.handleState('password', e.target.value)} className='username-input' type='text' /> </div>
-                        <div className='username'><div className='input-id'> Uplay UserName* </div> <input onChange={(e) => this.handleState('uplay', e.target.value)} className='username-input' type='text' /> </div>
-                        <button className='confirm-button' onClick={() => registerUser(this.state.userinfo)}> Signup </button>
+                        <div className='username'>
+                            <div className='input-id'> Email* </div>
+                            <input onChange={(e) => this.handleState('email', e.target.value)} className='username-input' type='text' />
+                        </div>
+                        <div className='username'>
+                            <div className='input-id'> Password* </div> 
+                            <input onChange={(e) => this.handleState('password', e.target.value)} className='username-input' type='text' />
+                        </div>
+                        <div className='username'>
+                            <div className='input-id'> Uplay UserName* </div> 
+                            <input onChange={(e) => this.handleState('uplay', e.target.value)} className='username-input' type='text' /> 
+                        </div>
+                        <button className='confirm-button' onClick={() => registerUser(this.state)}> Signup </button>
                     </div>
                 </div>
             )
@@ -71,4 +80,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
-// export default connect(mapStateToProps, mapDispatchToProps)(Instructions);
