@@ -25,7 +25,6 @@ class Login extends Component {
             this.setState({
                 userinfo : username
             })
-            
             console.log(this.state.userinfo)
     }
 
