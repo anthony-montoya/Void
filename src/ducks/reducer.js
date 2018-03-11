@@ -5,7 +5,9 @@ const SIGNUP = 'SIGNUP'
 const REGISTER_USER = 'REGISTER_USER'
 
 let initialState = {
-
+    user: {
+        
+    }
 }
 
 
