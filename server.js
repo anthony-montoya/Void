@@ -22,7 +22,7 @@ massive({
 app.post('/register_user', (req, res) => {
     const {username, email, password, uplay} = req.body;
     req.app.get('db').create_user([username, email, password, uplay]).then( response => {
-        res.status(200).send(console.log('ayee'))
+        res.status(200).send('User logged in')
     } )
 
 })

@@ -10,7 +10,6 @@ let initialState = {
 
 
 export function registerUser(userInfo){
-    console.log(userInfo)
     axios.post(`http://localhost:4000/register_user`, userInfo ).then(res => {
         console.log(res)
     })

@@ -15,6 +15,7 @@ class Login extends Component {
             uplay: '',
             login: true
         }
+        this.register = this.register.bind(this)
     }
 
     handleLogin = () => {
@@ -29,14 +30,32 @@ class Login extends Component {
         })
     }
 
+    register(){
+        this.props.registerUser(this.state)
+        this.setState({
+            username: '',
+            email: '',
+            password: '',
+            uplay: '',
+        })
+    }
+
     render() {
         if (this.state.login) {
             return (
                 <div className='login-wrapper'>
                     <div className='login-box'>
-                        <div className='sign-up'> <span className='selected-option'>LOGIN </span>  /  <span className='login-options'  onClick={this.handleLogin}> SIGNUP </span> </div>
-                        <div className='username'><div className='input-id'> UserName* </div>   <input className='username-input' type='text' /> </div>
-                        <div className='username'><div className='input-id'> Password* </div>   <input className='username-input' type='text' /> </div>
+                        <div className='sign-up'>
+                            <span className='selected-option'>LOGIN </span>  /  <span className='login-options'  onClick={this.handleLogin}> SIGNUP </span> 
+                        </div>
+                        <div className='username'>
+                            <div className='input-id'> UserName* </div>
+                            <input className='username-input' type='text' />
+                        </div>
+                        <div className='username'>
+                            <div className='input-id'> Password* </div> 
+                            <input className='username-input' type='text' />
+                        </div>
                     </div>
                 </div>
             );
@@ -44,24 +63,26 @@ class Login extends Component {
             return (
                 <div className='login-wrapper'>
                     <div className='login-box'>
-                        <div className='sign-up'> <span className='login-options' onClick={this.handleLogin}> LOGIN </span>   /   <span className='selected-option' > SIGNUP </span> </div>
+                        <div className='sign-up'> 
+                            <span className='login-options' onClick={this.handleLogin}> LOGIN </span>   /   <span className='selected-option' > SIGNUP </span>
+                        </div>
                         <div className='username'>
                             <div className='input-id'> UserName* </div>   
-                            <input onChange={(e) => this.handleState('username', e.target.value)} className='username-input' type='text' /> 
+                            <input value={this.state.username} onChange={(e) => this.handleState('username', e.target.value)} className='username-input' type='text' /> 
                         </div>
                         <div className='username'>
                             <div className='input-id'> Email* </div>
-                            <input onChange={(e) => this.handleState('email', e.target.value)} className='username-input' type='text' />
+                            <input value={this.state.email} onChange={(e) => this.handleState('email', e.target.value)} className='username-input' type='text' />
                         </div>
                         <div className='username'>
                             <div className='input-id'> Password* </div> 
-                            <input onChange={(e) => this.handleState('password', e.target.value)} className='username-input' type='text' />
+                            <input value={this.state.password} onChange={(e) => this.handleState('password', e.target.value)} className='username-input' type='text' />
                         </div>
                         <div className='username'>
                             <div className='input-id'> Uplay UserName* </div> 
-                            <input onChange={(e) => this.handleState('uplay', e.target.value)} className='username-input' type='text' /> 
+                            <input value={this.state.uplay} onChange={(e) => this.handleState('uplay', e.target.value)} className='username-input' type='text' /> 
                         </div>
-                        <button className='confirm-button' onClick={() => registerUser(this.state)}> Signup </button>
+                        <button className='confirm-button' onClick={() => this.register()}> Signup </button>
                     </div>
                 </div>
             )
