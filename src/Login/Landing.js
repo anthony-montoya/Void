@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import './Landing.css'
+import { PageContainer } from './LandingStyles'
 
 
 class Landing extends Component {
     render() {
         return (
-            <div className='landing-page-main-wrapper'>
+            <PageContainer>
                 <div className='Left-side-nav-bar'>
                     <div className='logo-wrapper'>   
                         <div className='logo'> <span className='void-white'>VOID-</span><span className='void-red'>BATTLES</span> </div>
@@ -24,7 +25,7 @@ class Landing extends Component {
                 </div>
                 
                 </div>
-            </div>
+            </PageContainer>
         );
     }
 }
