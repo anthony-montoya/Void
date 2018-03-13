@@ -1,8 +1,9 @@
-import styled from 'styled-components'
+import styled from 'styled-components-v2'
 
 export let PageContainer = styled.div`
     display: flex;
-    background-color: #151B27;
+    background-color: white;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
+    flex-wrap: wrap;
 `
