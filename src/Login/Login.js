@@ -27,7 +27,7 @@ class Login extends Component {
     handleState(property, value) {
         this.setState({
             [property]: value
-        })
+        }) 
     }
 
     register(){
@@ -50,11 +50,11 @@ class Login extends Component {
                         </div>
                         <div className='username'>
                             <div className='input-id'> UserName* </div>
-                            <input className='username-input' type='text' />
+                            <input className='username-input' />
                         </div>
                         <div className='username'>
                             <div className='input-id'> Password* </div> 
-                            <input className='username-input' type='text' />
+                            <input className='username-input' />
                         </div>
                     </div>
                 </div>
@@ -68,21 +68,23 @@ class Login extends Component {
                         </div>
                         <div className='username'>
                             <div className='input-id'> UserName* </div>   
-                            <input value={this.state.username} onChange={(e) => this.handleState('username', e.target.value)} className='username-input' type='text' /> 
+                            <input required value={this.state.username} onChange={(e) => this.handleState('username', e.target.value)} className='username-input'  /> 
                         </div>
                         <div className='username'>
                             <div className='input-id'> Email* </div>
-                            <input value={this.state.email} onChange={(e) => this.handleState('email', e.target.value)} className='username-input' type='text' />
+                            <input required value={this.state.email} onChange={(e) => this.handleState('email', e.target.value)} className='username-input' />
                         </div>
                         <div className='username'>
                             <div className='input-id'> Password* </div> 
-                            <input value={this.state.password} onChange={(e) => this.handleState('password', e.target.value)} className='username-input' type='text' />
+                            <input required value={this.state.password} onChange={(e) => this.handleState('password', e.target.value)} className='username-input'  />
                         </div>
                         <div className='username'>
                             <div className='input-id'> Uplay UserName* </div> 
-                            <input value={this.state.uplay} onChange={(e) => this.handleState('uplay', e.target.value)} className='username-input' type='text' /> 
+                            <input required value={this.state.uplay} onChange={(e) => this.handleState('uplay', e.target.value)} className='username-input' /> 
                         </div>
-                        <button className='confirm-button' onClick={() => this.register()}> Signup </button>
+                        <button disabled={this.state.username && this.state.email && this.state.password && this.state.uplay !== '' ? false : true }
+                        className='confirm-button' onClick={() => this.register()}> Signup 
+                        </button>
                     </div>
                 </div>
             )

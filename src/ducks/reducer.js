@@ -10,12 +10,12 @@ let initialState = {
 
 
 export function registerUser(userInfo){
-    axios.post(`http://localhost:4000/register_user`, userInfo ).then(res => {
-        console.log(res)
+    let successFullRegistration = axios.post(`http://localhost:4000/register_user`, userInfo ).then(res => {
+        return res.data
     })
     return {
         type: REGISTER_USER,
-        action: userInfo
+        action: successFullRegistration
 
     }
    
