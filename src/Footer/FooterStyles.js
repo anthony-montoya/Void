@@ -34,6 +34,7 @@ export let Category = styled.section`
 
 export let CopyrightText = styled.h1`
 	position: absolute;
+	font-size: 14px;
 	left: 50%;
 	-webkit-transform: translateX(-50%);
 	transform: translateX(-50%);

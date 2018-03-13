@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import VB_Background from '../resources/VB_Background.png'
+import VB_Background from '../resources/VB_Background2.jpg'
 
 export let PageContainer = styled.div`
 	display: flex;
@@ -10,13 +10,17 @@ export let PageContainer = styled.div`
 `
 
 export let HeroContainer = styled.section`
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: url(${VB_Background});
+	// background: url(${VB_Background});
+	background: url('https://www168.lunapic.com/do-not-link-here-use-hosting-instead/152097445931327473?8262371919');
 	background-size: cover;
-	width: 100%;
+	background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
 	height: 400px;
 
 	@media only screen and (min-width: 1824px) {
@@ -81,7 +85,7 @@ export let SectionHeader = styled.h1`
 
 export let DescriptionContainer = styled.section`
 	width: ${props => (props.width ? props.width : '90%')};
-	max-width: ${props => (props.width ? '900px' : '1200px')};
+	max-width: ${props => (props.width ? '800px' : '1200px')};
 	min-width: ${props => (props.width ? '600px' : '1200px')};
 	margin-top: ${props => (props.margin ? props.margin : '40px')};
 	display: flex;

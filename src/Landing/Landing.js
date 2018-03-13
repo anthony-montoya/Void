@@ -94,7 +94,7 @@ let Landing = () => {
 					Nunc volutpat leo quis lorem blandit faucibus. Aliquam erat volutpat.
 				</Paragraph>
 
-				<DescriptionContainer width="60%" margin={'60px'}>
+				<DescriptionContainer width="40%" margin={'60px'}>
 					<InfoContainer>
 						<img src={Cup} alt="" />
 						<SubHeader primary>PLAY IN TOURNAMENTS</SubHeader>
@@ -109,7 +109,7 @@ let Landing = () => {
 
 			<WhatIsVoidBattlesContainer>
 				<SectionHeader>READY TO OWN THE BATTLEFIELD?</SectionHeader>
-				<SignUpButton>SIGN UP</SignUpButton>
+				<SignUpButton>REGISTER</SignUpButton>
 			</WhatIsVoidBattlesContainer>
 		</PageContainer>
 	)
