@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser  = require('body-parser');
 const cors = require('cors')
 const massive = require("massive");
+const jwt = require('jsonwebtoken')
+const loginCtrl = require('./controllers/loginCtrl')
 
 const app = express();
 app.use(bodyParser.json())
@@ -20,13 +22,9 @@ massive({
 
 
 
-app.post('/register_user', (req, res) => {
-    const {username, email, password, uplay} = req.body;
-    req.app.get('db').create_user([username, email, password, uplay]).then( response => {
-        res.status(200).send('User logged in')
-    } )
+app.post('/register_user', loginCtrl.register)
 
-})
+app.get('/login_user', loginCtrl.login)
 
 
 
