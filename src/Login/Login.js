@@ -3,7 +3,7 @@ import './Login.css'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {registerUser } from '.././ducks/reducer'
+import {registerUser, login } from '.././ducks/reducer'
 
 class Login extends Component {
     constructor() {
@@ -50,12 +50,14 @@ class Login extends Component {
                         </div>
                         <div className='username'>
                             <div className='input-id'> UserName* </div>
-                            <input className='username-input' type='text' />
+                            <input onChange={(e) => this.handleState('username', e.target.value)} className='username-input' type='text' />
                         </div>
                         <div className='username'>
                             <div className='input-id'> Password* </div> 
-                            <input className='username-input' type='text' />
+                            <input onChange={(e) => this.handleState('password', e.target.value)}  className='username-input' type='text' />
                         </div>
+
+                        <button className='confirm-button' onClick={() => this.props.login(this.state)}> Login </button>
                     </div>
                 </div>
             );
@@ -97,7 +99,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ registerUser }, dispatch)
+    return bindActionCreators({ registerUser, login }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

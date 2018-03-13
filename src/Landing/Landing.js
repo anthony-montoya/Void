@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import './Landing.css'
-import { PageContainer, Button } from './LandingStyles'
 
-let Landing = () => {
+class Landing extends Component {
+    render() {
         return (
-            <PageContainer>
-            </PageContainer>
-        )
+            <div>
+                hi
+            </div>
+        );
+    }
 }
 
 export default Landing;

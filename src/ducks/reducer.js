@@ -3,6 +3,7 @@ import axios from 'axios'
 const LOGIN = 'LOGIN';
 const SIGNUP = 'SIGNUP'
 const REGISTER_USER = 'REGISTER_USER'
+const LOGIN_USER = 'LOGIN_USER'
 
 let initialState = {
     
@@ -20,6 +21,21 @@ export function registerUser(userInfo){
     }
    
 }
+
+export function login(userLogin){
+    let username = userLogin.username 
+    let password = userLogin.password
+    axios.get(`http://localhost:4000/login_user/${username}/${password}`).then( res => {
+        console.log(res)
+    })
+
+    return {
+        type: LOGIN_USER,
+        action: ''
+    }
+}
+
+
 
 function reducer(state = initialState , action){
     switch(action.type){
