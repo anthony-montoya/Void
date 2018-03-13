@@ -1,5 +1,6 @@
 import React from 'react'
-import { HeaderContainer, LogoContainer, NavContainer, NavOptions } from './HeaderStyles';
+import { HeaderContainer, NavContainer, NavOptions } from './HeaderStyles';
+import { LogoContainer } from '../GlobalStyles'
 import { Link } from 'react-router-dom'
 
 export default class Header extends React.Component {
@@ -32,7 +33,7 @@ export default class Header extends React.Component {
         const headerLinks = ['/', '/find-teams', '/find-players', '/register', '/login']
         for (let i = 0; i <= 5; i++) {
             headerOptions.push(
-                <Link to={headerLinks[i]} style={{ height: '100%' }}><NavOptions selected={this.state.selected[i]} onClick={() => this.alterOptions(i)}>{headerPages[i]}</NavOptions></Link>
+                <Link to={headerLinks[i]} style={{ height: '100%' }} key={i}><NavOptions selected={this.state.selected[i]} onClick={() => this.alterOptions(i)}>{headerPages[i]}</NavOptions></Link>
             )
             if (headerOptions.length === 5) {
                 return headerOptions.map(option => { return option })

@@ -16,24 +16,6 @@ export let HeaderContainer = styled.div`
     }
 `
 
-export let LogoContainer = styled.section`
-    display: flex;
-    font-size: ${props => props.fromLanding ? '50px' : '35px'}
-    ${props => props.fromLanding && `width: 100%; justify-content: center; align-items: center;`}
-    
-    
-    h1 {
-        color: #9c32f7;
-        font-weight: lighter;
-    }
-
-    h2 {
-        color: white;
-        font-weight: bolder;
-        font-size: inherit;
-    }
-`
-
 export let NavContainer = styled.section`
     width: 50% !important;
     display: flex;
