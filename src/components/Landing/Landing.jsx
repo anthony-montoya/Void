@@ -12,13 +12,13 @@ import {
 	InfoContainer,
 	SignUpButton
 } from './LandingStyles'
-import { LogoContainer, SubHeader } from '../GlobalStyles'
+import { LogoContainer, SubHeader } from '../../GlobalStyles'
 
-import EqualSign from '../resources/equal-sign.png'
-import Chat from '../resources/chat.png'
-import Feedback from '../resources/feedback.png'
-import Cup from '../resources/cup.png'
-import LevelUp from '../resources/level-up.png'
+import EqualSign from '../../resources/equal-sign.png'
+import Chat from '../../resources/chat.png'
+import Feedback from '../../resources/feedback.png'
+import Cup from '../../resources/cup.png'
+import LevelUp from '../../resources/level-up.png'
 
 let Landing = () => {
 	return (

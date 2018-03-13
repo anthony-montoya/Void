@@ -1,6 +1,6 @@
 import React from 'react'
 import { HeaderContainer, NavContainer, NavOptions } from './HeaderStyles';
-import { LogoContainer } from '../GlobalStyles'
+import { LogoContainer } from '../../GlobalStyles'
 import { Link } from 'react-router-dom'
 
 export default class Header extends React.Component {

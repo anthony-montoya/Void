@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import VB_Background from '../resources/VB_Background2.jpg'
+import VB_Background from '../../resources/VB_Background2.jpg'
 
 export let PageContainer = styled.div`
 	display: flex;
@@ -107,10 +107,10 @@ export let InfoContainer = styled.section`
 export let SignUpButton = styled.button`
 	width: 200px;
 	height: 50px;
-    border: none;
-    background-color: #BFBFBF;
-    color: #414141;
-    font-weight: bold;
-    font-size: 18px;
-    margin-top: 40px;
+	border: none;
+	background-color: #bfbfbf;
+	color: #414141;
+	font-weight: bold;
+	font-size: 18px;
+	margin-top: 40px;
 `

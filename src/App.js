@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import router from './router.js'
-import Header from './Header/Header'
-import Footer from './Footer/Footer'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 import styled from 'styled-components'
 
 let RouterContainer = styled.div`
