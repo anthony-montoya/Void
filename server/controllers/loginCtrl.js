@@ -1,3 +1,6 @@
+const jwt = require('jsonwebtoken')
+
+ 
  module.exports = {
     register :  (req, res) => {
         const {username, email, password, uplay} = req.body;
@@ -8,6 +11,6 @@
     },
 
     login : (req, res) => {
-        console.log(req.body)
+        console.log(jwt)
     }
 }

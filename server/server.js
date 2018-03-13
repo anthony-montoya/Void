@@ -9,16 +9,6 @@ const app = express();
 app.use(bodyParser.json())
 app.use(cors())
 
-massive({
-    host: 'ec2-23-21-236-249.compute-1.amazonaws.com',
-    port: '5432',
-    database: 'df7e37aantqni4',
-    user: 'gpspagsoacswgw',
-    password: '3d394f39d802306192923a07a168928658d4dab713f75d2b30a33897597e8874',
-    ssl: true
-}).then(function (db) {
-    app.set('db', db)
-})
 
 
 // var { Client } = require('pg')
@@ -36,7 +26,7 @@ massive({
 
 app.post('/register_user', loginCtrl.register)
 
-app.get('/login_user', loginCtrl.login)
+app.get('/login_user/:username/:password', loginCtrl.login)
 
 
 

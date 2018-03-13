@@ -23,11 +23,9 @@ export function registerUser(userInfo){
 }
 
 export function login(userLogin){
-    let config = {
-        username: userLogin.username,
-        password: userLogin.password
-    }
-    axios.get(`http://localhost:4000/login_user/:${config}`).then( res => {
+    let username = userLogin.username 
+    let password = userLogin.password
+    axios.get(`http://localhost:4000/login_user/${username}/${password}`).then( res => {
         console.log(res)
     })
 
