@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-const LOGIN = 'LOGIN';
 const SIGNUP = 'SIGNUP'
 const REGISTER_USER = 'REGISTER_USER'
 const LOGIN_USER = 'LOGIN_USER'
+const USER_STATUS = 'USER_STATUS'
 
 let initialState = {
-    
+    loggedInStatus: false
 }
 
 
@@ -25,13 +25,21 @@ export function registerUser(userInfo){
 export function login(userLogin){
     let username = userLogin.username 
     let password = userLogin.password
-    axios.get(`http://localhost:4000/login_user/${username}/${password}`).then( res => {
-        console.log(res)
+    let authToken = axios.get(`http://localhost:4000/login_user/${username}/${password}`).then( res => {
+        return localStorage.setItem('authToken', res.data);
     })
 
+  
     return {
         type: LOGIN_USER,
-        action: ''
+        action: authToken
+    }
+}
+
+export function userLoginStatus(status){
+    return{
+        type: USER_STATUS,
+        payload: status
     }
 }
 
@@ -39,8 +47,9 @@ export function login(userLogin){
 
 function reducer(state = initialState , action){
     switch(action.type){
-         case REGISTER_USER:
-         return 
+        case USER_STATUS:
+        console.log(action.payload, 'reducer')
+        return Object.assign({}, state, {loggedInStatus: action.payload});
 
     }
     return state;

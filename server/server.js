@@ -11,22 +11,23 @@ app.use(cors())
 
 
 
-// var { Client } = require('pg')
-// const client = new Client({ connectionString: process.env.DATABASE_URI })
+var { Client } = require('pg')
+const client = new Client({ connectionString: process.env.DATABASE_URI })
 
-// try {
-//     client.connect((error, client, done) => {
-//       if (error) console.log(('Failed to connect to database...' + error).error)
-//       else console.log('Connected to database!'.bold.white)
-//     })
-//   } catch (err) {
-//     console.log('Failed to Connect to Database: ', err)
-//   }
+try {
+    client.connect((error, client, done) => {
+      if (error) console.log(('Failed to connect to database...' + error).error)
+      else console.log('Connected to database!'.bold.white)
+    })
+  } catch (err) {
+    console.log('Failed to Connect to Database: ', err)
+  }
 
 
 app.post('/register_user', loginCtrl.register)
 
 app.get('/login_user/:username/:password', loginCtrl.login)
+app.get('/authenticateAuthToken/:token', loginCtrl.authenticateToken)
 
 
 

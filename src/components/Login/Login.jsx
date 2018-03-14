@@ -3,7 +3,7 @@ import './Login.css'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {registerUser, login } from '.././ducks/reducer'
+import {registerUser, login } from '../.././ducks/reducer'
 
 class Login extends Component {
     constructor() {
