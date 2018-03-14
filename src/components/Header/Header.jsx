@@ -68,6 +68,7 @@ export default class Header extends React.Component {
 			)
 			if (headerOptions.length === 5) {
 				return headerOptions.map(option => {
+					console.log(option)
 					return option
 				})
 			}

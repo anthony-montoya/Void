@@ -13,7 +13,7 @@ export function Authentication(Component) {
 			super()
 
 			this.state = {
-				AuthenticateJSX: <h1>Authenticating to make sure you are supposed to be here.</h1>
+				AuthenticateJSX: <PageNotFound />
 			}
 		}
 		componentWillMount() {
@@ -22,7 +22,7 @@ export function Authentication(Component) {
 					.then(res => {
 						console.log(res.data)
 						if (res.data.err) {
-							alert('please sign in')
+							alert('Please sign in to view this page!')
 							this.props.userLoginStatus(false)
 							this.setState({
 								AuthenticateJSX: <Redirect to='/login' />
