@@ -90,5 +90,5 @@ export let SignUpButton = styled.button`
 	color: #414141;
 	font-weight: bold;
 	font-size: 18px;
-	margin-top: 40px;
+	cursor: pointer;
 `

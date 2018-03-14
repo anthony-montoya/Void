@@ -9,7 +9,14 @@ import {
 	InfoContainer,
 	SignUpButton
 } from './LandingStyles'
-import { PageContainer, LogoContainer, SubHeader, Header, PurpleText, HeroButton } from '../../GlobalStyles'
+import {
+	PageContainer,
+	LogoContainer,
+	SubHeader,
+	Header,
+	PurpleText,
+	HeroButton
+} from '../../GlobalStyles'
 
 import EqualSign from '../../resources/equal-sign.png'
 import Chat from '../../resources/chat.png'
@@ -36,9 +43,11 @@ let Landing = () => {
 				</h2>
 
 				<HeroButtonsContainer>
-					<HeroButton>REGISTER</HeroButton>
+					<Link to="/register">
+						<HeroButton link>REGISTER</HeroButton>
+					</Link>
 					-
-					<HeroButton>FIND A TEAM</HeroButton>
+					<HeroButton link>FIND A TEAM</HeroButton>
 				</HeroButtonsContainer>
 			</HeroContainer>
 
@@ -106,7 +115,9 @@ let Landing = () => {
 
 			<WhatIsVoidBattlesContainer>
 				<Header>READY TO OWN THE BATTLEFIELD?</Header>
-				<SignUpButton>REGISTER</SignUpButton>
+				<Link to="/register" style={{marginTop: '40px'}}>
+					<SignUpButton>REGISTER</SignUpButton>
+				</Link>
 			</WhatIsVoidBattlesContainer>
 		</PageContainer>
 	)

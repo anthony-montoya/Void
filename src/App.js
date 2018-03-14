@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <RouterContainer>
+        <RouterContainer onChange={window.scrollTo(0, 0)}>
           {router}
         </RouterContainer>
         <Footer />
