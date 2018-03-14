@@ -19,6 +19,7 @@ const jwt = require('jsonwebtoken')
     },
 
     authenticateToken: (req, res) => {
+        console.log(req.params.token)
         jwt.verify(req.params.token, 'secret', (err, decoded) => {
             if(err){
                 res.status(200).send({err : err})

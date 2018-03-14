@@ -4,7 +4,7 @@ import LogoIcon from '../../resources/VBLogov2.png'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { registerUser, login } from '../.././ducks/reducer'
+import { login } from '../.././ducks/reducer'
 import {
 	LoginContainer,
 	Logo,
@@ -32,11 +32,20 @@ class Login extends Component {
 			passwordError: '',
 			loginError: ''
 		}
+		
+	}
+
+
+	getUserLoginInput(property, value){
+		this.setState({
+			[property] : value
+		})
 	}
 
 	
 
 	render() {
+		console.log(this.state)
 		return (
 			<PageContainer>
 				<LoginContainer>
@@ -51,18 +60,18 @@ class Login extends Component {
 							<InputTitle>
 								<PurpleText>VOID_</PurpleText>BATTLES USERNAME
 							</InputTitle>
-							<Input />
+							<Input onChange={(e) => this.getUserLoginInput('vb_username', e.target.value)}/>
 							<InputError>{this.state.usernameError}</InputError>
 						</InputContainer>
 
 						<InputContainer>
 							<InputTitle>PASSWORD</InputTitle>
-							<Input type="password" />
+							<Input type="password" onChange={(e) => this.getUserLoginInput('password', e.target.value)} />
 							<InputError>{this.state.passwordError}</InputError>
 						</InputContainer>
 
 						<ButtonContainer>
-							<HeroButton width="60%">LOGIN</HeroButton>
+							<HeroButton width="60%" onClick={() => this.props.login(this.state)}  >LOGIN</HeroButton>
 							<InputError>{this.state.loginError}</InputError>
 						</ButtonContainer>
 					</Contents>
@@ -129,7 +138,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ registerUser, login }, dispatch)
+	return bindActionCreators({ login }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

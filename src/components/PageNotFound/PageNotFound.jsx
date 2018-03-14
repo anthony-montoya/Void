@@ -3,6 +3,6 @@ import { Redirect } from 'react-router-dom'
 
 let PageNotFound = () => (
 	// <div>Page Not Found...</div>
-	<Redirect to="/" />
+	<div> Please sign in or check the URL </div>
 )
 export default PageNotFound

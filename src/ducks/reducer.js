@@ -6,7 +6,8 @@ const LOGIN_USER = 'LOGIN_USER'
 const USER_STATUS = 'USER_STATUS'
 
 let initialState = {
-    loggedInStatus: false
+    loggedInStatus: null,
+
 }
 
 
