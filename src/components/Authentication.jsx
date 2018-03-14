@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -10,12 +10,17 @@ export function Authentication(Component) {
 	class Authenticate extends Component {
 		componentWillMount() {
 			if (localStorage.getItem('authToken')) {
-				axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('authToken')}`)
+				axios
+					.get(
+						`http://localhost:4000/authenticateAuthToken/${localStorage.getItem(
+							'authToken'
+						)}`
+					)
 					.then(res => {
 						if (res.data.err) {
 							this.props.userLoginStatus(false)
 						} else if (res.data.success) {
-                            this.props.userLoginStatus(true)
+							this.props.userLoginStatus(true)
 						}
 					})
 			}
@@ -25,21 +30,19 @@ export function Authentication(Component) {
 			if (this.props.loggedInStatus) {
 				return <Component {...this.props} />
 			} else {
-				// return <Redirect to="/login" />
-				return <Login {...this.props} />
+				return <Redirect to="/login" />
 			}
 		}
-    }
-    function mapStateToProps(state) {
-        return {
-            loggedInStatus: state.loggedInStatus
-        }
-    }
-    
-    function mapDispatchToProps(dispatch) {
-        return bindActionCreators({ userLoginStatus }, dispatch)
-    }
+	}
+	function mapStateToProps(state) {
+		return {
+			loggedInStatus: state.loggedInStatus
+		}
+	}
 
-    return connect(mapStateToProps, mapDispatchToProps)(Authenticate)
+	function mapDispatchToProps(dispatch) {
+		return bindActionCreators({ userLoginStatus }, dispatch)
+	}
 
+	return connect(mapStateToProps, mapDispatchToProps)(Authenticate)
 }

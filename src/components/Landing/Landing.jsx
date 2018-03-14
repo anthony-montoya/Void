@@ -1,18 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {
-	PageContainer,
 	HeroContainer,
 	HeroButtonsContainer,
-	HeroButton,
 	WhatIsVoidBattlesContainer,
-	SectionHeader,
 	Paragraph,
 	DescriptionContainer,
 	InfoContainer,
 	SignUpButton
 } from './LandingStyles'
-import { LogoContainer, SubHeader } from '../../GlobalStyles'
+import { PageContainer, LogoContainer, SubHeader, Header, PurpleText, HeroButton } from '../../GlobalStyles'
 
 import EqualSign from '../../resources/equal-sign.png'
 import Chat from '../../resources/chat.png'
@@ -46,9 +43,9 @@ let Landing = () => {
 			</HeroContainer>
 
 			<WhatIsVoidBattlesContainer>
-				<SectionHeader>
-					What is <span>VOID_</span>BATTLES?
-				</SectionHeader>
+				<Header>
+					What is <PurpleText light>VOID_</PurpleText>BATTLES?
+				</Header>
 				<Paragraph width="600px">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat
 					leo quis lorem blandit faucibus. Aliquam erat volutpat. Suspendisse
@@ -108,7 +105,7 @@ let Landing = () => {
 			</WhatIsVoidBattlesContainer>
 
 			<WhatIsVoidBattlesContainer>
-				<SectionHeader>READY TO OWN THE BATTLEFIELD?</SectionHeader>
+				<Header>READY TO OWN THE BATTLEFIELD?</Header>
 				<SignUpButton>REGISTER</SignUpButton>
 			</WhatIsVoidBattlesContainer>
 		</PageContainer>

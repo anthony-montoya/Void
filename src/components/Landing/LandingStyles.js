@@ -1,14 +1,6 @@
 import styled from 'styled-components'
 import VB_Background from '../../resources/VB_Background2.jpg'
 
-export let PageContainer = styled.div`
-	display: flex;
-	width: 100%;
-	flex-direction: column;
-	background-color: white;
-	color: white;
-`
-
 export let HeroContainer = styled.section`
 	width: 100%;
 	display: flex;
@@ -18,8 +10,8 @@ export let HeroContainer = styled.section`
 	background: url(${VB_Background});
 	background-size: cover;
 	background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
+	background-position: center;
+	background-repeat: no-repeat;
 	height: 400px;
 	@media only screen and (min-width: 1824px) {
 		height: 600px;
@@ -37,16 +29,7 @@ export let HeroButtonsContainer = styled.section`
 	align-items: center;
 `
 
-export let HeroButton = styled.button`
-	width: 160px;
-	height: 45px;
-	border: 1px solid #9c32f7;
-	border-radius: 0px;
-	background-color: rgba(0, 0, 0, 0.3);
-	color: white;
-	font-size: 16px;
-	font-weight: lighter;
-`
+
 
 export let WhatIsVoidBattlesContainer = styled.div`
 	width: 100%;
