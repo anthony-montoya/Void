@@ -20,6 +20,14 @@ export default class Header extends React.Component {
 	}
 
 	componentDidMount() {
+		this.setHeader()
+	}
+
+	componentWillReceiveProps() {
+		this.setHeader()
+	}
+
+	setHeader = () => {
 		for (let i = 0; i <= this.state.headerLinks.length; i++) {
 			if (window.location.pathname === this.state.headerLinks[i]) this.alterOptions(i)
 		}

@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header path={window.location.pathname}/>
         <RouterContainer onChange={window.scrollTo(0, 0)}>
           {router}
         </RouterContainer>
