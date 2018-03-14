@@ -24,7 +24,7 @@ export function registerUser(userInfo){
 }
 
 export function login(userLogin){
-    let username = userLogin.username 
+    let username = userLogin.vb_username 
     let password = userLogin.password
     let authToken = axios.get(`http://localhost:4000/login_user/${username}/${password}`).then( res => {
         return localStorage.setItem('authToken', res.data);
