@@ -1,8 +1,9 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
-import Landing from './Landing/Landing.js'
-import Login from './Login/Login.js'
-import Profile from './Profile/Profile.js'
+import Landing from './components/Landing/Landing.js'
+import Login from './components/Login/Login.jsx'
+import Profile from './components/Profile/Profile.jsx'
+import {Authentication} from './components/Authentication'
 
 
 
@@ -11,6 +12,6 @@ export default (
     <Switch>
         <Route component={Landing} path='/' exact/>
         <Route component={Login} path='/login' />
-        <Route component={Profile} path='/profile' />
+        <Route component={Authentication(Profile)} path='/profile' />
     </Switch>
 )
