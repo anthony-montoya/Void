@@ -1,4 +1,6 @@
 import React from 'react'
+import { registerUser, login } from '../.././ducks/reducer'
+import { connect } from 'react-redux'
 import LogoIcon from '../../resources/VBLogov2.png'
 import {
 	RegisterContainer,
@@ -17,14 +19,31 @@ import {
 	HeroButton
 } from '../../GlobalStyles'
 
-export default class Register extends React.Component {
+class Register extends React.Component {
 	constructor() {
 		super()
 
 		this.state = {
-			usernameError: ''
+			vb_username: '',
+			uplay: '',
+			email: '',
+			password: '',
+			usernameError: '',
+			passwordError: '',
+			loginError: ''
 		}
 	}
+
+	register = () => {
+		let userInfo = {
+			vb_username: this.state.vb_username,
+			uplay: this.state.uplay,
+			email: this.state.email,
+			password: this.state.password
+		}
+		this.props.registerUser(userInfo)
+	}
+
 	render() {
 		return (
 			<PageContainer>
@@ -72,3 +91,9 @@ export default class Register extends React.Component {
 		)
 	}
 }
+
+function mapStateToProps(state) {
+	return {}
+}
+
+export default connect(mapStateToProps, { registerUser, login })(Register)

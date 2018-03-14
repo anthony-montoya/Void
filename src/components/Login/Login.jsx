@@ -26,26 +26,15 @@ class Login extends Component {
 	constructor() {
 		super()
 		this.state = {
-			username: '',
-			email: '',
+			vb_username: '',
 			password: '',
-			uplay: '',
-			login: true,
 			usernameError: '',
 			passwordError: '',
 			loginError: ''
 		}
 	}
 
-	register = () => {
-		let userInfo = {
-			username: this.state.username,
-			email: this.state.email,
-			password: this.state.password,
-			uplay: this.state.uplay
-		}
-		this.props.registerUser(userInfo)
-	}
+	
 
 	render() {
 		return (
