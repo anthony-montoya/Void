@@ -13,7 +13,7 @@ const jwt = require('jsonwebtoken')
     login : (req, res) => {
         var token = jwt.sign({
             data: 'authToken'
-          }, 'secret', { expiresIn: '25sec' })
+          }, 'secret', { expiresIn: '15sec' })
         return res.status(200).send(token)      
         
     },

@@ -4,7 +4,7 @@ import Landing from './components/Landing/Landing.jsx'
 import Login from './components/Login/Login.jsx'
 import Register from './components/Register/Register'
 import Profile from './components/Profile/Profile.jsx'
-import { Authentication } from './components/Authentication'
+import {Authentication} from './components/Authentication'
 import NotFound from './components/PageNotFound/PageNotFound'
 
 export default (
