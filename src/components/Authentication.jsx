@@ -11,19 +11,18 @@ export function Authentication(Component) {
 	class Authenticate extends Component {
 		constructor() {
 			super()
-
 			this.state = {
-				AuthenticateJSX: <h1>Authenticating to make sure you are supposed to be here.</h1>
+				AuthenticateJSX: <PageNotFound />
 			}
 		}
 		componentWillMount() {
 			if (localStorage.getItem('authToken')) {
 				axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('authToken')}`)
-					.then(res => {
-						console.log(res.data)
+					.then(
+						res => {
 						if (res.data.err) {
-							alert('please sign in')
 							this.props.userLoginStatus(false)
+							alert('You must be signed in!')
 							this.setState({
 								AuthenticateJSX: <Redirect to='/login' />
 							})
@@ -39,7 +38,7 @@ export function Authentication(Component) {
 				return <Component {...this.props} />
 			} else if (!this.props.loggedInStatus){
 				return this.state.AuthenticateJSX
-			} else return <PageNotFound />
+			} else return <Redirect to='/' />
 		}
 	}
 	function mapStateToProps(state) {

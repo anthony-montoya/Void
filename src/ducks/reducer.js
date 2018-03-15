@@ -13,27 +13,28 @@ let initialState = {
 
 export function registerUser(userInfo){
     let successFullRegistration = axios.post(`http://localhost:4000/register_user`, userInfo ).then(res => {
-        return res.data
+        if(res.data.error){
+            alert(res.data.error)
+        } else return res.data
     })
     return {
         type: REGISTER_USER,
         action: successFullRegistration
-
     }
    
 }
 
 export function login(userLogin){
-    let username = userLogin.vb_username 
-    let password = userLogin.password
-    let authToken = axios.get(`http://localhost:4000/login_user/${username}/${password}`).then( res => {
-        return localStorage.setItem('authToken', res.data);
+    let authorizeUser = axios.get(`http://localhost:4000/login_user/${userLogin.vb_username}/${userLogin.password}`).then( res => {
+        localStorage.setItem('authToken', res.data.token);
+        if(res.data.error){
+            alert('Invalid Username Or Password')
+        } else return res.data.userData
     })
 
-  
     return {
         type: LOGIN_USER,
-        action: authToken
+        action: authorizeUser
     }
 }
 
@@ -49,8 +50,10 @@ export function userLoginStatus(status){
 function reducer(state = initialState , action){
     switch(action.type){
         case USER_STATUS:
-        console.log(action.payload, 'reducer')
         return Object.assign({}, state, {loggedInStatus: action.payload});
+        case LOGIN_USER:
+        return Object.assign({}, state, {userData: action.payload})
+
 
     }
     return state;
