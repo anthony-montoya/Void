@@ -42,10 +42,21 @@ class Login extends Component {
 		})
 	}
 
+	loginAndClearState(){
+		this.props.login(this.state)
+		
+		this.setState({
+			vb_username: '',
+			password: '',
+			usernameError: '',
+			passwordError: '',
+			loginError: ''
+		})
+	}
+
 	
 
 	render() {
-		console.log(this.state)
 		return (
 			<PageContainer>
 				<LoginContainer>
@@ -60,18 +71,18 @@ class Login extends Component {
 							<InputTitle>
 								<PurpleText>VOID_</PurpleText>BATTLES USERNAME
 							</InputTitle>
-							<Input onChange={(e) => this.getUserLoginInput('vb_username', e.target.value)}/>
+							<Input value={this.state.vb_username} onChange={(e) => this.getUserLoginInput('vb_username', e.target.value)}/>
 							<InputError>{this.state.usernameError}</InputError>
 						</InputContainer>
 
 						<InputContainer>
 							<InputTitle>PASSWORD</InputTitle>
-							<Input type="password" onChange={(e) => this.getUserLoginInput('password', e.target.value)} />
+							<Input value={this.state.password} type="password" onChange={(e) => this.getUserLoginInput('password', e.target.value)} />
 							<InputError>{this.state.passwordError}</InputError>
 						</InputContainer>
 
 						<ButtonContainer>
-							<HeroButton width="60%" onClick={() => this.props.login(this.state)}  >LOGIN</HeroButton>
+							<HeroButton width="60%" onClick={() => this.loginAndClearState()}  >LOGIN</HeroButton>
 							<InputError>{this.state.loginError}</InputError>
 						</ButtonContainer>
 					</Contents>
@@ -79,58 +90,7 @@ class Login extends Component {
 			</PageContainer>
 		)
 	}
-	// render() {
-	//     if (this.state.login) {
-	//         return (
-	//             <div className='login-wrapper'>
-	//                 <div className='login-box'>
-	//                     <div className='sign-up'>
-	//                         <span className='selected-option'>LOGIN </span>  /  <span className='login-options'  onClick={this.handleLogin}> SIGNUP </span>
-	//                     </div>
-	//                     <div className='username'>
-	//                         <div className='input-id'> UserName* </div>
-	//                         <input onChange={(e) => this.handleState('username', e.target.value)} className='username-input' type='text' />
-	//                     </div>
-	//                     <div className='username'>
-	//                         <div className='input-id'> Password* </div>
-	//                         <input onChange={(e) => this.handleState('password', e.target.value)}  className='username-input' type='text' />
-	//                     </div>
 
-	//                     <button className='confirm-button' onClick={() => this.props.login(this.state)}> Login </button>
-	//                 </div>
-	//             </div>
-	//         );
-	//     } else {
-	//         return (
-	//             <div className='login-wrapper'>
-	//                 <div className='login-box'>
-	//                     <div className='sign-up'>
-	//                         <span className='login-options' onClick={this.handleLogin}> LOGIN </span>   /   <span className='selected-option' > SIGNUP </span>
-	//                     </div>
-	//                     <div className='username'>
-	//                         <div className='input-id'> UserName* </div>
-	//                         <input required value={this.state.username} onChange={(e) => this.handleState('username', e.target.value)} className='username-input'  />
-	//                     </div>
-	//                     <div className='username'>
-	//                         <div className='input-id'> Email* </div>
-	//                         <input required value={this.state.email} onChange={(e) => this.handleState('email', e.target.value)} className='username-input' />
-	//                     </div>
-	//                     <div className='username'>
-	//                         <div className='input-id'> Password* </div>
-	//                         <input required value={this.state.password} onChange={(e) => this.handleState('password', e.target.value)} className='username-input'  />
-	//                     </div>
-	//                     <div className='username'>
-	//                         <div className='input-id'> Uplay UserName* </div>
-	//                         <input required value={this.state.uplay} onChange={(e) => this.handleState('uplay', e.target.value)} className='username-input' />
-	//                     </div>
-	//                     <button disabled={this.state.username && this.state.email && this.state.password && this.state.uplay !== '' ? false : true }
-	//                     className='confirm-button' onClick={() => this.register()}> Signup
-	//                     </button>
-	//                 </div>
-	//             </div>
-	//         )
-	//     }
-	// }
 }
 
 function mapStateToProps(state) {

@@ -44,6 +44,12 @@ class Register extends React.Component {
 		this.props.registerUser(userInfo)
 	}
 
+	updateUserRegistration (property, value){
+		this.setState({
+			[property]: value
+		})
+	}
+
 	render() {
 		return (
 			<PageContainer>
@@ -59,30 +65,30 @@ class Register extends React.Component {
 							<InputTitle>
 								<PurpleText>VOID_</PurpleText>BATTLES USERNAME
 							</InputTitle>
-							<Input />
+							<Input onChange={(e) => this.updateUserRegistration('vb_username', e.target.value) }/>
 							<InputError>{this.state.usernameError}</InputError>
 						</InputContainer>
 
 						<InputContainer>
 							<InputTitle>UPLAY NICKNAME</InputTitle>
-							<Input />
+							<Input onChange={(e) => this.updateUserRegistration('uplay', e.target.value) } />
 							<InputError>{this.state.usernameError}</InputError>
 						</InputContainer>
 
 						<InputContainer>
 							<InputTitle>EMAIL</InputTitle>
-							<Input />
+							<Input onChange={(e) => this.updateUserRegistration('email', e.target.value) }/>
 							<InputError>{this.state.usernameError}</InputError>
 						</InputContainer>
 
 						<InputContainer>
 							<InputTitle>PASSWORD</InputTitle>
-							<Input type="password" />
+							<Input type="password" onChange={(e) => this.updateUserRegistration('password', e.target.value) } />
 							<InputError>{this.state.passwordError}</InputError>
 						</InputContainer>
 
 						<ButtonContainer>
-							<HeroButton width="60%">CREATE ACCOUNT</HeroButton>
+							<HeroButton onClick={this.register} width="60%">CREATE ACCOUNT</HeroButton>
 							<InputError>{this.state.loginError}</InputError>
 						</ButtonContainer>
 					</Contents>
