@@ -15,10 +15,10 @@ export function Authentication(Component) {
 				AuthenticateJSX: <PageNotFound />
 			}
 		}
+
 		componentWillMount() {
-			if (localStorage.getItem('authToken')) {
+			if (localStorage.getItem('auth_token')) {
 				axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('auth_token')}`).then(response => {
-					console.log(response.data)
 					if (response.data.err) {
 						this.setState({
 							AuthenticateJSX: <Redirect to='/login' />
@@ -33,7 +33,6 @@ export function Authentication(Component) {
 		}
 
 		render() {
-			console.log(this.props)
 			if (this.props.loggedInStatus) {
 				return <Component {...this.props} />
 			} else if (!this.props.loggedInStatus) {

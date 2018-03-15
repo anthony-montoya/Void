@@ -1,8 +1,8 @@
 import axios from 'axios'
-import Login from '../components/Login/Login';
 
 const LOGIN_USER = 'LOGIN_USER'
 const LOGOUT_USER = 'LOGOUT_USER'
+const CHECK_AUTH_TOKEN = 'CHECK_AUTH_TOKEN'
 
 let initialState = {
     loggedInStatus: false,

@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { HeaderContainer, NavContainer, NavOptions } from './HeaderStyles'
 import { LogoContainer } from '../../GlobalStyles'
 import { Link } from 'react-router-dom'
+import { logInUser, logOutUser } from '../../ducks/reducer'
+import axios from 'axios'
 
 class Header extends React.Component {
 	constructor() {
@@ -23,44 +25,65 @@ class Header extends React.Component {
 				'FAQ',
 				'REGISTER',
 				'LOGIN'
-			],
-			loggedInLinks: [],
-			loggedInPages: []
+			]
 		}
 	}
 
 	componentDidMount() {
-		this.setHeader(this.props)
+		this.checkAuthToken()
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.setHeader(nextProps)
+		this.checkAuthToken()
 	}
 
-	setHeader = (props) => {
+	checkAuthToken = () => {
+		if (localStorage.getItem('auth_token')) {
+			axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('auth_token')}`).then(response => {
+				if (response.data.userData) {
+					this.setState({
+						headerLinks: [
+							'/',
+							'/find-players',
+							'/vb-team/',
+							'/vb-profile',
+							'/logout'
+						],
+						headerPages: [
+							'HOME',
+							'FIND PLAYERS',
+							'MY TEAM',
+							'MY PROFILE',
+							'LOGOUT'
+						]
+					})
+				} else if (response.data.error) {
+					this.setState({
+						headerLinks: [
+							'/',
+							'/about_us',
+							'/faq',
+							'/register',
+							'/login'
+						],
+						headerPages: [
+							'HOME',
+							'ABOUT US',
+							'FAQ',
+							'REGISTER',
+							'LOGIN'
+						]
+					})
+				}
+				this.setHeader()
+			})
+		}
+	}
+
+	setHeader = () => {
 		let links = this.state.headerLinks
 		let pages = this.state.headerPages
 
-		if (props.loggedInStatus) {
-			this.setState({
-				loggedInLinks: [
-					'/',
-					'/find-players',
-					`/vb-team/${props.userData.team_id}`,
-					`/vb-profile/${props.userData.vb_username}`,
-					'/logout'
-				],
-				loggedInPages: [
-					'HOME',
-					'FIND PLAYERS',
-					'MY TEAM',
-					'MY PROFILE',
-					'LOGOUT'
-				]
-			})
-			links = this.state.loggedInLinks
-			pages = this.state.loggedInPages
-		}
 		for (let i = 0; i <= links.length; i++) {
 			if (window.location.pathname === links[i]) this.alterOptions(i)
 		}
@@ -82,8 +105,8 @@ class Header extends React.Component {
 
 	renderTabs = () => {
 		const headerOptions = []
-		let links = this.props.loggedInStatus ? this.state.loggedInLinks : this.state.headerLinks
-		let pages = this.props.loggedInStatus ? this.state.loggedInPages : this.state.headerPages
+		let links = this.state.headerLinks
+		let pages = this.state.headerPages
 
 		for (let i = 0; i <= 5; i++) {
 			headerOptions.push(
@@ -121,4 +144,4 @@ function mapStateToProps(state) {
 	return { loggedInStatus: state.loggedInStatus, userData: state.userData }
 }
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps, { logInUser, logOutUser })(Header)
