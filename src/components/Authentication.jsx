@@ -12,7 +12,7 @@ export function Authentication(Component) {
 		constructor() {
 			super()
 			this.state = {
-				AuthenticateJSX: <PageNotFound />
+				AuthenticateJSX: <h1>Authenticating...</h1>
 			}
 		}
 

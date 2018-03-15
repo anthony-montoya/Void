@@ -45,8 +45,8 @@ class Header extends React.Component {
 						headerLinks: [
 							'/',
 							'/find-players',
-							'/vb-team/',
-							'/vb-profile',
+							`/vb-team/${response.data.userData.uplay}`,
+							`/vb-profile/${response.data.userData.vb_username}`,
 							'/logout'
 						],
 						headerPages: [
