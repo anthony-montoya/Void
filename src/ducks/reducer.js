@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Login from '../components/Login/Login';
 
 const LOGIN_USER = 'LOGIN_USER'
 const LOGOUT_USER = 'LOGOUT_USER'
@@ -11,7 +12,7 @@ let initialState = {
 export function logInUser(userData) {
     return {
         type: LOGIN_USER,
-        action: userData
+        payload: userData
     }
 }
 

@@ -18,13 +18,15 @@ export function Authentication(Component) {
 		componentWillMount() {
 			if (localStorage.getItem('authToken')) {
 				axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('authToken')}`).then(response => {
+					console.log(response.data)
 					if (response.data.err) {
 						this.setState({
 							AuthenticateJSX: <Redirect to='/login' />
 						})
 						this.props.logOutUser()
 						alert('You must be signed in!')
-					} else if (response.data.success) {
+					} else if (response.data.token) {
+						
 						this.props.logInUser(response.data.userData)
 					}
 				})

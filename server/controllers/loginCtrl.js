@@ -43,15 +43,15 @@ module.exports = {
     login: (req, res) => {
         let checkIfUserExists = {
             text: `select * from users where (vb_username = $1 OR email = $1)`,
-            values: [req.params.username]
+            values: [req.params.vb_username]
         }
 
         client.query(checkIfUserExists, (err, result) => {
             if (result.rows[0]) {
                 bcrypt.compare(req.params.password, result.rows[0].passwd, function (err, verified) {
                     if (verified) {
-                        let token = jwt.sign({ data: 'authToken' }, 'secret', { expiresIn: '15sec' })
-                        console.log('TOKEN MADE')
+                        let token = jwt.sign({ name: 'auth_token', vb_username: req.params.vb_username }, 'secret', { expiresIn: '15sec' })
+                        console.log('Token has been created for: ' + req.params.vb_username)
                         res.status(200).send({ token: token, userData: result.rows[0] });
                     }
                 })
@@ -64,9 +64,17 @@ module.exports = {
         jwt.verify(req.params.token, 'secret', (err, decoded) => {
             if (err) {
                 res.status(200).send({ err: err })
-            } else {
-                res.status(200).send({ success: decoded }) //Logged in son
-                console.log("Token Verified")
+            } else if (decoded) {
+                let checkIfUserExists = {
+                    text: `select * from users where (vb_username = $1 OR email = $1)`,
+                    values: [decoded.vb_username]
+                }
+                client.query(checkIfUserExists, (error, result) => {
+                    if (result.rows) {
+                        console.log('Token Verified. Logging in ' + result.rows[0].vb_username)
+                        res.status(200).send({ userData: result.rows[0] })
+                    }
+                })
             }
         });
     }

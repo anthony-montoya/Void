@@ -44,7 +44,8 @@ class Register extends React.Component {
 		}
 		let successFullRegistration = axios.post(`http://localhost:4000/register_user`, userInfo).then(response => {
 			if (response.data.userData) {
-				this.props.setLoggedInStatus(true)
+				console.log(response.data.userData)
+				this.props.logInUser(response.data.userData)
 			}
 			else if (response.data.error) {
 				this.setState({ registerError: response.data.error })

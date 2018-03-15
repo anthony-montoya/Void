@@ -12,46 +12,57 @@ class Header extends React.Component {
 			selected: [true, false, false, false, false],
 			headerLinks: [
 				'/',
-				'/find-teams',
-				'/find-players',
+				'/about_us',
+				'/faq',
 				'/register',
 				'/login'
 			],
 			headerPages: [
 				'HOME',
-				'FIND TEAMS',
-				'FIND PLAYERS',
+				'ABOUT US',
+				'FAQ',
 				'REGISTER',
 				'LOGIN'
-			]
+			],
+			loggedInLinks: [],
+			loggedInPages: []
 		}
 	}
 
 	componentDidMount() {
-		console.log(this.props)
 		this.setHeader(this.props)
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps)
 		this.setHeader(nextProps)
 	}
 
 	setHeader = (props) => {
-		console.log(props)
-		if (props.loggedInStatus) {
-			let updatedHeaderLinks = { ...this.state.headerLinks }
-			let updatedHeaderPages = { ...this.state.headerPages }
+		let links = this.state.headerLinks
+		let pages = this.state.headerPages
 
-			updatedHeaderLinks[4] = '/logout'
-			updatedHeaderPages[4] = 'LOGOUT'
+		if (false) {
 			this.setState({
-				headerLinks: updatedHeaderLinks,
-				headerPages: updatedHeaderPages
+				loggedInLinks: [
+					'/',
+					'/about_us',
+					`/my-team/${props.userData.team_id}`,
+					`/my-profile/${props.userData.profile_id}`,
+					'/logout'
+				],
+				loggedInPages: [
+					'HOME',
+					'ABOUT US',
+					'MY TEAM',
+					'MY PROFILE',
+					'LOGOUT'
+				]
 			})
+			links = this.state.loggedInLinks
+			pages = this.state.loggedInPages
 		}
-		for (let i = 0; i <= this.state.headerLinks.length; i++) {
-			if (window.location.pathname === this.state.headerLinks[i]) this.alterOptions(i)
+		for (let i = 0; i <= links.length; i++) {
+			if (window.location.pathname === links[i]) this.alterOptions(i)
 		}
 	}
 
@@ -71,13 +82,16 @@ class Header extends React.Component {
 
 	renderTabs = () => {
 		const headerOptions = []
+		let links = this.state.loggedInLinks.length ? this.state.loggedInLinks : this.state.headerLinks
+		let pages = this.state.loggedInPages.length ? this.state.loggedInPages : this.state.headerPages
+
 		for (let i = 0; i <= 5; i++) {
 			headerOptions.push(
-				<Link to={this.state.headerLinks[i]} style={{ height: '100%' }} key={i}>
+				<Link to={links[i]} style={{ height: '100%' }} key={i}>
 					<NavOptions
 						selected={this.state.selected[i]}
 						onClick={() => this.alterOptions(i)}>
-						{this.state.headerPages[i]}
+						{pages[i]}
 					</NavOptions>
 				</Link>
 			)
@@ -90,6 +104,7 @@ class Header extends React.Component {
 	}
 
 	render() {
+		console.log(this.props)
 		return (
 			<HeaderContainer>
 				<LogoContainer>
@@ -104,7 +119,7 @@ class Header extends React.Component {
 }
 
 function mapStateToProps(state) {
-	return { loggedInStatus: state.loggedInStatus }
+	return { loggedInStatus: state.loggedInStatus, userData: state.userData }
 }
 
 export default connect(mapStateToProps)(Header)

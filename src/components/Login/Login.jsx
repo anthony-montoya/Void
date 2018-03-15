@@ -26,8 +26,8 @@ class Login extends Component {
 	constructor() {
 		super()
 		this.state = {
-			vb_username: '',
-			password: '',
+			vb_username: 'BrettlyClawfield',
+			password: 'test',
 			usernameError: '',
 			passwordError: '',
 			loginError: ''
@@ -40,25 +40,23 @@ class Login extends Component {
 		})
 	}
 
-	loginAndClearState() {
-		let authorizeUser = axios
-			.get(`http://localhost:4000/login_user/${this.state.vb_username}/${this.state.password}`)
-			.then(response => {
-				if (response.data.token) {
-					localStorage.setItem('authToken', response.data.token)
-					this.props.logInUser(response.data.userData)
-				} else if (response.data.error) {
-					this.setState({ loginError: response.data.error })
-				}
-			})
-
-		this.setState({
-			vb_username: '',
-			password: '',
-			usernameError: '',
-			passwordError: '',
-			loginError: ''
+	loginAndClearState = () => {
+		axios.get(`http://localhost:4000/login_user/${this.state.vb_username}/${this.state.password}`).then(response => {
+			if (response.data.token) {
+				localStorage.setItem('authToken', response.data.token)
+				this.props.logInUser(response.data.userData)
+			} else if (response.data.error) {
+				this.setState({ loginError: response.data.error })
+			}
 		})
+
+		// this.setState({
+		// 	vb_username: '',
+		// 	password: '',
+		// 	usernameError: '',
+		// 	passwordError: '',
+		// 	loginError: ''
+		// })
 	}
 
 	render() {
@@ -103,7 +101,7 @@ class Login extends Component {
 							<ButtonContainer>
 								<HeroButton
 									width="60%"
-									onClick={() => this.loginAndClearState()}>
+									onClick={this.loginAndClearState}>
 									LOGIN
 								</HeroButton>
 								<InputError>{this.state.loginError}</InputError>

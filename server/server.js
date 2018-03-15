@@ -16,7 +16,7 @@ app.use(cors())
 
 app.post('/register_user', loginCtrl.register)
 
-app.get('/login_user/:username/:password', loginCtrl.login)
+app.get('/login_user/:vb_username/:password', loginCtrl.login)
 app.get('/authenticateAuthToken/:token', loginCtrl.authenticateToken)
 
 
