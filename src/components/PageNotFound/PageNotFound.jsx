@@ -1,8 +1,8 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 let PageNotFound = () => (
-	// <div>Page Not Found...</div>
-	<div> Please sign in or check the URL </div>
+	<div>
+	</div>
 )
 export default PageNotFound

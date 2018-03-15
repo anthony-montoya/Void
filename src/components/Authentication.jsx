@@ -22,8 +22,8 @@ export function Authentication(Component) {
 					.then(res => {
 						console.log(res.data)
 						if (res.data.err) {
-							alert('Please sign in to view this page!')
 							this.props.userLoginStatus(false)
+							alert('You must be signed in!')
 							this.setState({
 								AuthenticateJSX: <Redirect to='/login' />
 							})

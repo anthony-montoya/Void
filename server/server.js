@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
@@ -12,6 +13,7 @@ app.use(cors())
 
 
 var { Client } = require('pg')
+console.log(process.env.DATABASE_URI)
 const client = new Client({ connectionString: process.env.DATABASE_URI })
 
 try {
