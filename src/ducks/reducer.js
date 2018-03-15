@@ -17,6 +17,7 @@ export function logInUser(userData) {
 }
 
 export function logOutUser() {
+    localStorage.setItem('auth_token', null)
     return {
         type: LOGOUT_USER
     }
@@ -27,7 +28,7 @@ function reducer(state = initialState, action) {
         case LOGIN_USER:
             return Object.assign({}, state, { loggedInStatus: true, userData: action.payload })
         case LOGOUT_USER:
-            return Object.assign({}, state, { loggedInStatus: false, userData: null })
+            return Object.assign({}, state, { loggedInStatus: false, userData: {} })
     }
     return state;
 }

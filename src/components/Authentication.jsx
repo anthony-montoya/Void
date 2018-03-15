@@ -17,7 +17,7 @@ export function Authentication(Component) {
 		}
 		componentWillMount() {
 			if (localStorage.getItem('authToken')) {
-				axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('authToken')}`).then(response => {
+				axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('auth_token')}`).then(response => {
 					console.log(response.data)
 					if (response.data.err) {
 						this.setState({
@@ -25,8 +25,7 @@ export function Authentication(Component) {
 						})
 						this.props.logOutUser()
 						alert('You must be signed in!')
-					} else if (response.data.token) {
-						
+					} else if (response.data.userData) {
 						this.props.logInUser(response.data.userData)
 					}
 				})
@@ -34,6 +33,7 @@ export function Authentication(Component) {
 		}
 
 		render() {
+			console.log(this.props)
 			if (this.props.loggedInStatus) {
 				return <Component {...this.props} />
 			} else if (!this.props.loggedInStatus) {

@@ -41,18 +41,18 @@ class Header extends React.Component {
 		let links = this.state.headerLinks
 		let pages = this.state.headerPages
 
-		if (false) {
+		if (props.loggedInStatus) {
 			this.setState({
 				loggedInLinks: [
 					'/',
-					'/about_us',
-					`/my-team/${props.userData.team_id}`,
-					`/my-profile/${props.userData.profile_id}`,
+					'/find-players',
+					`/vb-team/${props.userData.team_id}`,
+					`/vb-profile/${props.userData.vb_username}`,
 					'/logout'
 				],
 				loggedInPages: [
 					'HOME',
-					'ABOUT US',
+					'FIND PLAYERS',
 					'MY TEAM',
 					'MY PROFILE',
 					'LOGOUT'
@@ -82,8 +82,8 @@ class Header extends React.Component {
 
 	renderTabs = () => {
 		const headerOptions = []
-		let links = this.state.loggedInLinks.length ? this.state.loggedInLinks : this.state.headerLinks
-		let pages = this.state.loggedInPages.length ? this.state.loggedInPages : this.state.headerPages
+		let links = this.props.loggedInStatus ? this.state.loggedInLinks : this.state.headerLinks
+		let pages = this.props.loggedInStatus ? this.state.loggedInPages : this.state.headerPages
 
 		for (let i = 0; i <= 5; i++) {
 			headerOptions.push(
@@ -104,7 +104,6 @@ class Header extends React.Component {
 	}
 
 	render() {
-		console.log(this.props)
 		return (
 			<HeaderContainer>
 				<LogoContainer>

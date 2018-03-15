@@ -43,7 +43,7 @@ class Login extends Component {
 	loginAndClearState = () => {
 		axios.get(`http://localhost:4000/login_user/${this.state.vb_username}/${this.state.password}`).then(response => {
 			if (response.data.token) {
-				localStorage.setItem('authToken', response.data.token)
+				localStorage.setItem('auth_token', response.data.token)
 				this.props.logInUser(response.data.userData)
 			} else if (response.data.error) {
 				this.setState({ loginError: response.data.error })
@@ -61,7 +61,7 @@ class Login extends Component {
 
 	render() {
 		if (this.props.loggedInStatus) {
-			return <Redirect to="/profile" />
+			return <Redirect to={`/vb-profile/${this.props.userData.vb_username}`} />
 		} else
 			return (
 				<PageContainer>
@@ -114,7 +114,7 @@ class Login extends Component {
 }
 
 function mapStateToProps(state) {
-	return { loggedInStatus: state.loggedInStatus }
+	return { loggedInStatus: state.loggedInStatus, userData: state.userData }
 }
 
 export default connect(mapStateToProps, { logInUser })(Login)
