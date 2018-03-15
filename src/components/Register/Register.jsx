@@ -34,7 +34,7 @@ class Register extends React.Component {
 		}
 	}
 
-	register = () => {
+	register (){
 		let userInfo = {
 			vb_username: this.state.vb_username,
 			uplay: this.state.uplay,
@@ -42,6 +42,16 @@ class Register extends React.Component {
 			password: this.state.password
 		}
 		this.props.registerUser(userInfo)
+
+		this.setState({
+			vb_username: '',
+			uplay: '',
+			email: '',
+			password: '',
+			usernameError: '',
+			passwordError: '',
+			loginError: ''
+		})
 	}
 
 	updateUserRegistration (property, value){
@@ -65,30 +75,30 @@ class Register extends React.Component {
 							<InputTitle>
 								<PurpleText>VOID_</PurpleText>BATTLES USERNAME
 							</InputTitle>
-							<Input onChange={(e) => this.updateUserRegistration('vb_username', e.target.value) }/>
+							<Input value={this.state.vb_username} onChange={(e) => this.updateUserRegistration('vb_username', e.target.value) }/>
 							<InputError>{this.state.usernameError}</InputError>
 						</InputContainer>
 
 						<InputContainer>
 							<InputTitle>UPLAY NICKNAME</InputTitle>
-							<Input onChange={(e) => this.updateUserRegistration('uplay', e.target.value) } />
+							<Input value={this.state.uplay} onChange={(e) => this.updateUserRegistration('uplay', e.target.value) } />
 							<InputError>{this.state.usernameError}</InputError>
 						</InputContainer>
 
 						<InputContainer>
 							<InputTitle>EMAIL</InputTitle>
-							<Input onChange={(e) => this.updateUserRegistration('email', e.target.value) }/>
+							<Input value={this.state.email} onChange={(e) => this.updateUserRegistration('email', e.target.value) }/>
 							<InputError>{this.state.usernameError}</InputError>
 						</InputContainer>
 
 						<InputContainer>
 							<InputTitle>PASSWORD</InputTitle>
-							<Input type="password" onChange={(e) => this.updateUserRegistration('password', e.target.value) } />
+							<Input type="password" value={this.state.password} onChange={(e) => this.updateUserRegistration('password', e.target.value) } />
 							<InputError>{this.state.passwordError}</InputError>
 						</InputContainer>
 
 						<ButtonContainer>
-							<HeroButton onClick={this.register} width="60%">CREATE ACCOUNT</HeroButton>
+							<HeroButton onClick={() => this.register()} width="60%">CREATE ACCOUNT</HeroButton>
 							<InputError>{this.state.loginError}</InputError>
 						</ButtonContainer>
 					</Contents>
