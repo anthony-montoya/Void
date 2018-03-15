@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import './Login.css'
 import LogoIcon from '../../resources/VBLogov2.png'
-import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { login } from '../.././ducks/reducer'
+import { logInUser } from '../.././ducks/reducer'
 import {
 	LoginContainer,
 	Logo,
@@ -32,19 +32,26 @@ class Login extends Component {
 			passwordError: '',
 			loginError: ''
 		}
-		
 	}
 
-
-	getUserLoginInput(property, value){
+	getUserLoginInput(property, value) {
 		this.setState({
-			[property] : value
+			[property]: value
 		})
 	}
 
-	loginAndClearState(){
-		this.props.login(this.state)
-		
+	loginAndClearState() {
+		let authorizeUser = axios
+			.get(`http://localhost:4000/login_user/${this.state.vb_username}/${this.state.password}`)
+			.then(response => {
+				if (response.data.token) {
+					localStorage.setItem('authToken', response.data.token)
+					this.props.logInUser(response.data.userData)
+				} else if (response.data.error) {
+					this.setState({ loginError: response.data.error })
+				}
+			})
+
 		this.setState({
 			vb_username: '',
 			password: '',
@@ -54,51 +61,62 @@ class Login extends Component {
 		})
 	}
 
-	
-
 	render() {
-		return (
-			<PageContainer>
-				<LoginContainer>
-					<Logo src={LogoIcon} alt="" />
+		if (this.props.loggedInStatus) {
+			return <Redirect to="/profile" />
+		} else
+			return (
+				<PageContainer>
+					<LoginContainer>
+						<Logo src={LogoIcon} alt="" />
 
-					<Contents>
-						<Header>
-							<PurpleText>COMPETITION</PurpleText> AWAITS
-						</Header>
+						<Contents>
+							<Header>
+								<PurpleText>COMPETITION</PurpleText> AWAITS
+							</Header>
 
-						<InputContainer>
-							<InputTitle>
-								<PurpleText>VOID_</PurpleText>BATTLES USERNAME
-							</InputTitle>
-							<Input value={this.state.vb_username} onChange={(e) => this.getUserLoginInput('vb_username', e.target.value)}/>
-							<InputError>{this.state.usernameError}</InputError>
-						</InputContainer>
+							<InputContainer>
+								<InputTitle>
+									<PurpleText>VOID_</PurpleText>BATTLES USERNAME
+								</InputTitle>
+								<Input
+									value={this.state.vb_username}
+									onChange={e =>
+										this.getUserLoginInput('vb_username', e.target.value)
+									}
+								/>
+								<InputError>{this.state.usernameError}</InputError>
+							</InputContainer>
 
-						<InputContainer>
-							<InputTitle>PASSWORD</InputTitle>
-							<Input value={this.state.password} type="password" onChange={(e) => this.getUserLoginInput('password', e.target.value)} />
-							<InputError>{this.state.passwordError}</InputError>
-						</InputContainer>
+							<InputContainer>
+								<InputTitle>PASSWORD</InputTitle>
+								<Input
+									value={this.state.password}
+									type="password"
+									onChange={e =>
+										this.getUserLoginInput('password', e.target.value)
+									}
+								/>
+								<InputError>{this.state.passwordError}</InputError>
+							</InputContainer>
 
-						<ButtonContainer>
-							<HeroButton width="60%" onClick={() => this.loginAndClearState()}  >LOGIN</HeroButton>
-							<InputError>{this.state.loginError}</InputError>
-						</ButtonContainer>
-					</Contents>
-				</LoginContainer>
-			</PageContainer>
-		)
+							<ButtonContainer>
+								<HeroButton
+									width="60%"
+									onClick={() => this.loginAndClearState()}>
+									LOGIN
+								</HeroButton>
+								<InputError>{this.state.loginError}</InputError>
+							</ButtonContainer>
+						</Contents>
+					</LoginContainer>
+				</PageContainer>
+			)
 	}
-
 }
 
 function mapStateToProps(state) {
-	return {}
+	return { loggedInStatus: state.loggedInStatus }
 }
 
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ login }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, { logInUser })(Login)

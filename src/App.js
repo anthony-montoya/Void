@@ -4,6 +4,7 @@ import router from './router.js'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 let RouterContainer = styled.div`
   display: inline-block;
@@ -11,8 +12,9 @@ let RouterContainer = styled.div`
   margin-top: 80px;
 `
 
-class App extends Component {
+export default class App extends Component {
   render() {
+    console.log(this.props)
     return (
       <div>
         <Header path={window.location.pathname}/>
@@ -24,5 +26,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

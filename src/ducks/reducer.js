@@ -1,64 +1,34 @@
 import axios from 'axios'
 
-const SIGNUP = 'SIGNUP'
-const REGISTER_USER = 'REGISTER_USER'
 const LOGIN_USER = 'LOGIN_USER'
-const USER_STATUS = 'USER_STATUS'
+const LOGOUT_USER = 'LOGOUT_USER'
 
 let initialState = {
-    loggedInStatus: null,
-
+    loggedInStatus: false,
+    userData: {}
 }
 
-
-export function registerUser(userInfo){
-    console.log(userInfo)
-    let successFullRegistration = axios.post(`http://localhost:4000/register_user`, userInfo ).then(res => {
-        if(res.data.error){
-            alert(res.data.error)
-        } else return res.data
-    })
-    return {
-        type: REGISTER_USER,
-        action: successFullRegistration
-    }
-   
-}
-
-export function login(userLogin){
-    let authorizeUser = axios.get(`http://localhost:4000/login_user/${userLogin.vb_username}/${userLogin.password}`).then( res => {
-        localStorage.setItem('authToken', res.data.token);
-        if(res.data.error){
-            alert('Invalid Username Or Password')
-        } else return res.data.userData
-    })
-
+export function logInUser(userData) {
     return {
         type: LOGIN_USER,
-        action: authorizeUser
+        action: userData
     }
 }
 
-export function userLoginStatus(status){
-    return{
-        type: USER_STATUS,
-        payload: status
+export function logOutUser() {
+    return {
+        type: LOGOUT_USER
     }
 }
 
-
-
-function reducer(state = initialState , action){
-    switch(action.type){
-        case USER_STATUS:
-        return Object.assign({}, state, {loggedInStatus: action.payload});
+function reducer(state = initialState, action) {
+    switch (action.type) {
         case LOGIN_USER:
-        return Object.assign({}, state, {userData: action.payload})
-
-
+            return Object.assign({}, state, { loggedInStatus: true, userData: action.payload })
+        case LOGOUT_USER:
+            return Object.assign({}, state, { loggedInStatus: false, userData: null })
     }
     return state;
-
 }
 
 export default reducer

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { userLoginStatus } from '.././ducks/reducer'
+import { logInUser, logOutUser } from '.././ducks/reducer'
 import Login from './Login/Login'
 import PageNotFound from './PageNotFound/PageNotFound'
 import axios from 'axios'
@@ -17,26 +17,24 @@ export function Authentication(Component) {
 		}
 		componentWillMount() {
 			if (localStorage.getItem('authToken')) {
-				axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('authToken')}`)
-					.then(
-						res => {
-						if (res.data.err) {
-							this.props.userLoginStatus(false)
-							alert('You must be signed in!')
-							this.setState({
-								AuthenticateJSX: <Redirect to='/login' />
-							})
-						} else if (res.data.success) {
-							this.props.userLoginStatus(true)
-						}
-					})
+				axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('authToken')}`).then(response => {
+					if (response.data.err) {
+						this.setState({
+							AuthenticateJSX: <Redirect to='/login' />
+						})
+						this.props.logOutUser()
+						alert('You must be signed in!')
+					} else if (response.data.success) {
+						this.props.logInUser(response.data.userData)
+					}
+				})
 			}
 		}
 
 		render() {
 			if (this.props.loggedInStatus) {
 				return <Component {...this.props} />
-			} else if (!this.props.loggedInStatus){
+			} else if (!this.props.loggedInStatus) {
 				return this.state.AuthenticateJSX
 			} else return <Redirect to='/' />
 		}
@@ -47,9 +45,5 @@ export function Authentication(Component) {
 		}
 	}
 
-	function mapDispatchToProps(dispatch) {
-		return bindActionCreators({ userLoginStatus }, dispatch)
-	}
-
-	return connect(mapStateToProps, mapDispatchToProps)(Authenticate)
+	return connect(mapStateToProps, { logInUser, logOutUser })(Authenticate)
 }

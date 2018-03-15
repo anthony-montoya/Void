@@ -1,33 +1,55 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { HeaderContainer, NavContainer, NavOptions } from './HeaderStyles'
 import { LogoContainer } from '../../GlobalStyles'
 import { Link } from 'react-router-dom'
 
-export default class Header extends React.Component {
+class Header extends React.Component {
 	constructor() {
 		super()
 
 		this.state = {
-            selected: [true, false, false, false, false],
-            headerLinks: [
-                '/',
-                '/find-teams',
-                '/find-players',
-                '/register',
-                '/login'
-            ]
+			selected: [true, false, false, false, false],
+			headerLinks: [
+				'/',
+				'/find-teams',
+				'/find-players',
+				'/register',
+				'/login'
+			],
+			headerPages: [
+				'HOME',
+				'FIND TEAMS',
+				'FIND PLAYERS',
+				'REGISTER',
+				'LOGIN'
+			]
 		}
 	}
 
 	componentDidMount() {
-		this.setHeader()
+		console.log(this.props)
+		this.setHeader(this.props)
 	}
 
-	componentWillReceiveProps() {
-		this.setHeader()
+	componentWillReceiveProps(nextProps) {
+		console.log(nextProps)
+		this.setHeader(nextProps)
 	}
 
-	setHeader = () => {
+	setHeader = (props) => {
+		console.log(props)
+		if (props.loggedInStatus) {
+			let updatedHeaderLinks = { ...this.state.headerLinks }
+			let updatedHeaderPages = { ...this.state.headerPages }
+
+			updatedHeaderLinks[4] = '/logout'
+			updatedHeaderPages[4] = 'LOGOUT'
+			this.setState({
+				headerLinks: updatedHeaderLinks,
+				headerPages: updatedHeaderPages
+			})
+		}
 		for (let i = 0; i <= this.state.headerLinks.length; i++) {
 			if (window.location.pathname === this.state.headerLinks[i]) this.alterOptions(i)
 		}
@@ -49,20 +71,13 @@ export default class Header extends React.Component {
 
 	renderTabs = () => {
 		const headerOptions = []
-		const headerPages = [
-			'HOME',
-			'FIND TEAMS',
-			'FIND PLAYERS',
-			'REGISTER',
-			'LOGIN'
-		]
 		for (let i = 0; i <= 5; i++) {
 			headerOptions.push(
 				<Link to={this.state.headerLinks[i]} style={{ height: '100%' }} key={i}>
 					<NavOptions
 						selected={this.state.selected[i]}
 						onClick={() => this.alterOptions(i)}>
-						{headerPages[i]}
+						{this.state.headerPages[i]}
 					</NavOptions>
 				</Link>
 			)
@@ -87,3 +102,9 @@ export default class Header extends React.Component {
 		)
 	}
 }
+
+function mapStateToProps(state) {
+	return { loggedInStatus: state.loggedInStatus }
+}
+
+export default connect(mapStateToProps)(Header)
