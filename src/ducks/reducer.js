@@ -12,6 +12,7 @@ let initialState = {
 
 
 export function registerUser(userInfo){
+    console.log(userInfo)
     let successFullRegistration = axios.post(`http://localhost:4000/register_user`, userInfo ).then(res => {
         if(res.data.error){
             alert(res.data.error)

@@ -35,13 +35,7 @@ class Register extends React.Component {
 	}
 
 	register (){
-		let userInfo = {
-			vb_username: this.state.vb_username,
-			uplay: this.state.uplay,
-			email: this.state.email,
-			password: this.state.password
-		}
-		this.props.registerUser(userInfo)
+		this.props.registerUser(this.state)
 
 		this.setState({
 			vb_username: '',
