@@ -63,7 +63,7 @@ module.exports = {
     authenticateToken: (req, res) => {
         jwt.verify(req.params.token, 'secret', (err, decoded) => {
             if (err) {
-                res.status(200).send({ err: err })
+                res.status(200).send({ error: err })
             } else if (decoded) {
                 let checkIfUserExists = {
                     text: `select * from users where (vb_username = $1 OR email = $1)`,

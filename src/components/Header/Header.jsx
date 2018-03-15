@@ -34,23 +34,26 @@ class Header extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
+		console.log('hit')
 		this.checkAuthToken()
 	}
 
 	checkAuthToken = () => {
 		if (localStorage.getItem('auth_token')) {
+			console.log(localStorage.getItem('auth_token'))
 			axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('auth_token')}`).then(response => {
+				console.log(response.data)
 				if (response.data.userData) {
 					this.setState({
 						headerLinks: [
-							'/',
+							'/compete',
 							'/find-players',
 							`/vb-team/${response.data.userData.uplay}`,
 							`/vb-profile/${response.data.userData.vb_username}`,
 							'/logout'
 						],
 						headerPages: [
-							'HOME',
+							'COMPETE',
 							'FIND PLAYERS',
 							'MY TEAM',
 							'MY PROFILE',

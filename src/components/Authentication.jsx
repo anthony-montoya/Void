@@ -6,20 +6,27 @@ import { logInUser, logOutUser } from '.././ducks/reducer'
 import Login from './Login/Login'
 import PageNotFound from './PageNotFound/PageNotFound'
 import axios from 'axios'
+import styled from 'styled-components'
+
+let AuthenticatingContainer = styled.div `
+	width: 100vw;
+	height: 100vh;
+	background-color: #383838;
+`
 
 export function Authentication(Component) {
 	class Authenticate extends Component {
 		constructor() {
 			super()
 			this.state = {
-				AuthenticateJSX: <h1>Authenticating...</h1>
+				AuthenticateJSX: <AuthenticatingContainer />
 			}
 		}
 
 		componentWillMount() {
 			if (localStorage.getItem('auth_token')) {
 				axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('auth_token')}`).then(response => {
-					if (response.data.err) {
+					if (response.data.error) {
 						this.setState({
 							AuthenticateJSX: <Redirect to='/login' />
 						})
