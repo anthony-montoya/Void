@@ -9,6 +9,7 @@ import NotFound from './components/PageNotFound/PageNotFound'
 import FindTeams from './components/FindTeams/FindTeams'
 import FindPlayers from './components/FindPlayers/FindPlayers'
 import Team from './components/Team/Team'
+import Compete from './components/Compete/Compete'
 import Logout from './components/Logout/Logout'
 
 export default (
@@ -20,6 +21,7 @@ export default (
 		<Route component={Authentication(FindTeams)} path='/find-teams' />
 		<Route component={Authentication(FindPlayers)} path='/find-players' />
 		<Route component={Authentication(Team)} path='/vb-team/:team_id' />
+		<Route component={Authentication(Compete)} path='/compete' />
 		<Route component={Logout} path='/logout' />
 		<Route component={NotFound} path='*' />
 	</Switch>

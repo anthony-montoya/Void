@@ -11,3 +11,5 @@ class Compete extends React.Component {
         )
     }
 }
+
+export default Compete

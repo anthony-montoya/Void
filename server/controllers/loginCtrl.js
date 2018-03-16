@@ -19,7 +19,8 @@ module.exports = {
                         client.query(insertNewUser, (err, newUser) => {
                             if (newUser) {
                                 console.log('Account ' + request.body.vb_username + ' has been registered.')
-                                response.status(200).send({ success: 'Account Registered!' })
+                                let token = jwt.sign({ name: 'auth_token', vb_username: newUser.rows[0].vb_username }, 'secret', { expiresIn: '15sec' })
+                                response.status(200).send({ token, userData: newUser.rows[0] })
                             }
                             else if (err) {
                                 console.log('Error registering user ' + request.body.vb_username + ' to the database.')

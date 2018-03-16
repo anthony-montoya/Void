@@ -5,12 +5,9 @@ import { logOutUser } from '../../ducks/reducer'
 
 class Logout extends React.Component {
     componentDidMount() {
-        console.log('hit')
-        localStorage.setItem('auth_token', null)
         this.props.logOutUser()
     }
     render() {
-        console.log(this.props.loggedInStatus)
         if (this.props.loggedInStatus) {
             return (
                 <h1>Loggin you out...</h1>

@@ -79,7 +79,6 @@ class Header extends React.Component {
 
 	setHeader = (links, pages) => {
 		for (let i = 0; i <= links.length; i++) {
-			console.log(window.location.pathname + ' SHOULD === ' + links[i])
 			if (window.location.pathname === links[i]) this.alterOptions(i)
 		}
 	}
