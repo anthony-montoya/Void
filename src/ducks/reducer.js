@@ -1,8 +1,5 @@
-import axios from 'axios'
-
 const LOGIN_USER = 'LOGIN_USER'
 const LOGOUT_USER = 'LOGOUT_USER'
-const CHECK_AUTH_TOKEN = 'CHECK_AUTH_TOKEN'
 
 let initialState = {
     loggedInStatus: false,
@@ -30,6 +27,7 @@ function reducer(state = initialState, action) {
             return Object.assign({}, state, { loggedInStatus: true, userData: action.payload })
         case LOGOUT_USER:
             return Object.assign({}, state, { loggedInStatus: false, userData: action.payload })
+        default:
     }
     return state;
 }

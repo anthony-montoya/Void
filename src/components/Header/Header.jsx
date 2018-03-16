@@ -4,7 +4,6 @@ import { HeaderContainer, NavContainer, NavOptions } from './HeaderStyles'
 import { LogoContainer } from '../../GlobalStyles'
 import { Link } from 'react-router-dom'
 import { logInUser, logOutUser } from '../../ducks/reducer'
-import axios from 'axios'
 
 class Header extends React.Component {
 	constructor() {

@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import LogoIcon from '../../resources/VBLogov2.png'
 import axios from 'axios'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { logInUser } from '../.././ducks/reducer'
 import {
 	LoginContainer,
@@ -49,14 +48,6 @@ class Login extends Component {
 				this.setState({ loginError: response.data.error })
 			}
 		})
-
-		// this.setState({
-		// 	vb_username: '',
-		// 	password: '',
-		// 	usernameError: '',
-		// 	passwordError: '',
-		// 	loginError: ''
-		// })
 	}
 
 	render() {

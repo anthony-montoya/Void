@@ -17,7 +17,7 @@ export default (
 		<Route component={Landing} path='/' exact />
 		<Route component={Login} path='/login' />
 		<Route component={Register} path='/register' />
-		<Route component={Authentication(Profile)} path='/vb-profile/:vb_username' />
+		<Route component={Profile} path='/vb-profile/:vb_username' />
 		<Route component={Authentication(FindTeams)} path='/find-teams' />
 		<Route component={Authentication(FindPlayers)} path='/find-players' />
 		<Route component={Authentication(Team)} path='/vb-team/:team_id' />

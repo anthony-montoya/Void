@@ -4,7 +4,6 @@ import router from './router.js'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import styled from 'styled-components'
-import { connect } from 'react-redux'
 
 let RouterContainer = styled.div`
   display: inline-block;
@@ -16,7 +15,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Header path={window.location.pathname}/>
+        <Header path={window.location.pathname} />
         <RouterContainer onChange={window.scrollTo(0, 0)}>
           {router}
         </RouterContainer>
