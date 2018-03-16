@@ -30,64 +30,56 @@ class Header extends React.Component {
 	}
 
 	componentDidMount() {
-		this.checkAuthToken()
+		this.setLinks(this.props)
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log('hit')
-		this.checkAuthToken()
+		this.setLinks(nextProps)
 	}
 
-	checkAuthToken = () => {
-		if (localStorage.getItem('auth_token')) {
-			console.log(localStorage.getItem('auth_token'))
-			axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('auth_token')}`).then(response => {
-				console.log(response.data)
-				if (response.data.userData) {
-					this.setState({
-						headerLinks: [
-							'/compete',
-							'/find-players',
-							`/vb-team/${response.data.userData.uplay}`,
-							`/vb-profile/${response.data.userData.vb_username}`,
-							'/logout'
-						],
-						headerPages: [
-							'COMPETE',
-							'FIND PLAYERS',
-							'MY TEAM',
-							'MY PROFILE',
-							'LOGOUT'
-						]
-					})
-				} else if (response.data.error) {
-					this.setState({
-						headerLinks: [
-							'/',
-							'/about_us',
-							'/faq',
-							'/register',
-							'/login'
-						],
-						headerPages: [
-							'HOME',
-							'ABOUT US',
-							'FAQ',
-							'REGISTER',
-							'LOGIN'
-						]
-					})
-				}
-				this.setHeader()
-			})
+	setLinks = (props) => {
+		let headerLinks = [
+			'/compete',
+			'/find-players',
+			`/vb-team/${props.userData.uplay}`,
+			`/vb-profile/${props.userData.vb_username}`,
+			'/logout'
+		]
+		let headerPages = [
+			'COMPETE',
+			'FIND PLAYERS',
+			'MY TEAM',
+			'MY PROFILE',
+			'LOGOUT'
+		]
+		if (props.loggedInStatus) {
+			this.setState({
+				headerLinks,
+				headerPages
+			}, this.setHeader(headerLinks, headerPages))
+		} else {
+			this.setState({
+				headerLinks: [
+					'/',
+					'/about_us',
+					'/faq',
+					'/register',
+					'/login'
+				],
+				headerPages: [
+					'HOME',
+					'ABOUT US',
+					'FAQ',
+					'REGISTER',
+					'LOGIN'
+				]
+			}, this.setHeader(this.state.headerLinks, this.state.headerPages))
 		}
 	}
 
-	setHeader = () => {
-		let links = this.state.headerLinks
-		let pages = this.state.headerPages
-
+	setHeader = (links, pages) => {
 		for (let i = 0; i <= links.length; i++) {
+			console.log(window.location.pathname + ' SHOULD === ' + links[i])
 			if (window.location.pathname === links[i]) this.alterOptions(i)
 		}
 	}
