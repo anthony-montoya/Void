@@ -65,7 +65,7 @@ module.exports = {
         let { token, vb_username } = request.params
 
         jwt.verify(token, 'secret', (error, decoded) => {
-            if (err) {
+            if (error) {
                 response.status(200).send({ error })
             } else if (decoded) {
                 let checkIfUserExists = {

@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { PageContainer } from '../../GlobalStyles'
+import ProfileHeader from './ProfileHeader'
+import ProfileRanks from './PofileRanks'
 
 class Profile extends Component {
-    componentDidMount() {
-        console.log(this.props.match.params)
-    }
-    render() {
-        return (
-            <div>
-                PROFILE FOR {this.props.match.params.vb_username}
-            </div>
-        );
-    }
+  componentDidMount() {
+    console.log(this.props.match.params)
+  }
+  render() {
+    return (
+      <PageContainer>
+        <ProfileHeader />
+
+        <ProfileRanks />
+      </PageContainer>
+    )
+  }
 }
 
-export default Profile;
+export default Profile
