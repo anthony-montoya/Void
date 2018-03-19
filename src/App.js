@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import router from './router.js'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -21,6 +21,6 @@ export default class App extends Component {
         </RouterContainer>
         <Footer />
       </div>
-    );
+    )
   }
 }

@@ -60,7 +60,7 @@ export let UsernameContainer = styled.div`
 export let ProfileButtonsContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
-	width: 350px;
+	width: 300px;
 	height: 80px;
 `
 
@@ -75,14 +75,14 @@ export let ProfileButton = styled.section`
 	border: 1px solid ${props => props.color};
 	color: ${props => props.color};
 	cursor: default;
-	transition: all 0.2s ease;
-	background-color: rgba(0, 0, 0, 0.3);
+	transition: all 0.4s ease;
+	background-color: rgba(0, 0, 0, 0.1);
 
 	img {
 		height: 30px;
 	}
 
-	&:active {
+	&:hover {
 		background-color: rgba(255, 255, 255, 0);
 	}
 `
@@ -97,6 +97,7 @@ export let TeamIconContainer = styled.div`
 	font-weight: bold;
 	text-align: center;
 	cursor: pointer;
+	color: white;
 `
 
 export let TeamIcon = styled.img`
@@ -132,10 +133,17 @@ export let RankContent = styled.div`
 	}
 	section {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		background-color: #2b2b2b;
 		height: 85%;
+
+		h1 {
+			font-size: 20px;
+			margin-top: 5px;
+			color: white;
+		}
 
 		img {
 			height: 70%;
@@ -261,6 +269,8 @@ export let TeamContainer = styled.div`
 	text-align: center;
 	font-weight: 100;
 	align-items: center;
+	cursor: pointer;
+
 	img {
 		height: 80px;
 		margin: 0;

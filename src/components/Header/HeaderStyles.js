@@ -7,6 +7,7 @@ export let HeaderContainer = styled.div`
     display: flex;
     justify-content: space-around;
     background-color: #2b2b2b;
+    z-index: 1;
 
     section {
         width: 30%;

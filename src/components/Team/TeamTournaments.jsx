@@ -15,13 +15,13 @@ import {
 	TimeContent,
 	TimeStamps,
 	GameStatusContainer
-} from './ProfileStyles'
+} from '../Profile/ProfileStyles'
 
-class ProfileMatches extends React.Component {
+class TeamTournaments extends React.Component {
 	render() {
 		return (
 			<MatchesContainer>
-				<ContainerTitle>SCRIMMAGES</ContainerTitle>
+				<ContainerTitle>TOURNAMENTS</ContainerTitle>
 
 				<MatchesContent>
 					<MatchContainer>
@@ -119,4 +119,4 @@ class ProfileMatches extends React.Component {
 	}
 }
 
-export default ProfileMatches
+export default TeamTournaments

@@ -1,4 +1,10 @@
 import React from 'react'
+import { PageContainer } from '../../GlobalStyles'
+import TeamHeader from './TeamHeader'
+import TeamRanks from './TeamRanks'
+import TeamRoster from './TeamRoster'
+import TeamMatches from './TeamMatches'
+import TeamTournaments from './TeamTournaments'
 
 class Team extends React.Component {
     constructor() {
@@ -10,8 +16,14 @@ class Team extends React.Component {
     }
 
     render() {
-        return(
-            <h1>This is a Team Page. (:</h1>
+        return (
+            <PageContainer>
+                <TeamHeader />
+                <TeamRanks />
+                <TeamRoster/>
+                <TeamMatches />
+                <TeamTournaments />
+            </PageContainer>
         )
     }
 }

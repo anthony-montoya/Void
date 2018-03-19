@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import axios from 'axios'
 import { HeaderContainer, NavContainer, NavOptions } from './HeaderStyles'
 import { LogoContainer } from '../../GlobalStyles'
 import { Link } from 'react-router-dom'
@@ -13,15 +14,15 @@ class Header extends React.Component {
 			selected: [false, false, false, false, false],
 			headerLinks: [
 				'/',
-				'/about_us',
-				'/faq',
+				'/vb-teams',
+				'/players',
 				'/register',
 				'/login'
 			],
 			headerPages: [
 				'HOME',
-				'ABOUT US',
-				'FAQ',
+				'TEAMS',
+				'PLAYERS',
 				'REGISTER',
 				'LOGIN'
 			]
@@ -29,6 +30,7 @@ class Header extends React.Component {
 	}
 
 	componentDidMount() {
+		this.checkAuthToken()
 		this.setLinks(this.props)
 	}
 
@@ -36,11 +38,20 @@ class Header extends React.Component {
 		this.setLinks(nextProps)
 	}
 
+	checkAuthToken = () => {
+		if(localStorage.getItem('auth_token')) {
+			axios.get('http://localhost:4000/authenticateAuthToken/' + localStorage.getItem('auth_token')).then(response => {
+				console.log(response.data)
+				if(response.data.userData) this.props.logInUser(response.data.userData)
+			})
+		}
+	}
+
 	setLinks = (props) => {
 		let headerLinks = [
 			'/compete',
 			'/find-players',
-			`/vb-team/${props.userData.uplay}`,
+			`/vb-teams/${props.userData.uplay}`,
 			`/vb-profile/${props.userData.vb_username}`,
 			'/logout'
 		]
@@ -60,15 +71,15 @@ class Header extends React.Component {
 			this.setState({
 				headerLinks: [
 					'/',
-					'/about_us',
-					'/faq',
+					'/vb-teams',
+					'/players',
 					'/register',
 					'/login'
 				],
 				headerPages: [
 					'HOME',
-					'ABOUT US',
-					'FAQ',
+					'TEAMS',
+					'PLAYERS',
 					'REGISTER',
 					'LOGIN'
 				]
@@ -120,6 +131,7 @@ class Header extends React.Component {
 	}
 
 	render() {
+		console.log(this.props)
 		return (
 			<HeaderContainer>
 				<LogoContainer>
