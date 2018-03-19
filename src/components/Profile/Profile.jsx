@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { PageContainer } from '../../GlobalStyles'
 import ProfileHeader from './ProfileHeader'
 import ProfileRanks from './PofileRanks'
+import ProfileMatches from './ProfileMatches'
+import ProfileTournaments from './ProfileTournaments'
 
 class Profile extends Component {
   componentDidMount() {
@@ -13,6 +15,10 @@ class Profile extends Component {
         <ProfileHeader />
 
         <ProfileRanks />
+
+        <ProfileMatches />
+
+        <ProfileTournaments />
       </PageContainer>
     )
   }

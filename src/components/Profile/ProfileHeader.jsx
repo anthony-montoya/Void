@@ -11,13 +11,13 @@ import {
 	UsernameContainer,
 	ProfileButtonsContainer,
 	ProfileButton,
-	TeamContainer,
+	TeamIconContainer,
 	TeamIcon
 } from './ProfileStyles'
 
 class ProfileHeader extends React.Component {
     render() {
-        return(
+        return (
             <ProfileBackgroundContainer>
 					<ProfileContentsContainer>
 						<div style={{display: 'flex'}}>
@@ -52,10 +52,10 @@ class ProfileHeader extends React.Component {
 						</ProfileContent>
 					</div>
 
-					<TeamContainer>
+					<TeamIconContainer>
 						<TeamIcon src={'https://cdn-eslgaming.akamaized.net/play/eslgfx/gfx/logos/teams/12125000/12125408_medium.jpg'} alt=''/>
 						<h1>StaticVoid</h1>
-					</TeamContainer>
+					</TeamIconContainer>
 
 					</ProfileContentsContainer>
 				</ProfileBackgroundContainer>

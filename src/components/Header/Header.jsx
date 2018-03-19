@@ -10,7 +10,7 @@ class Header extends React.Component {
 		super()
 
 		this.state = {
-			selected: [true, false, false, false, false],
+			selected: [false, false, false, false, false],
 			headerLinks: [
 				'/',
 				'/about_us',
