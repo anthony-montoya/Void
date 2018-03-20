@@ -22,7 +22,6 @@ export function Authentication(Component) {
 		}
 
 		componentWillMount() {
-			if (localStorage.getItem('auth_token')) {
 				axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('auth_token')}`).then(response => {
 					if (response.data.error) {
 						this.setState({
@@ -30,11 +29,11 @@ export function Authentication(Component) {
 						})
 						this.props.logOutUser()
 						alert('You must be signed in!')
-					} else if (response.data.userData) {
+					} else {
+						console.log(response.data.userData, 'alksdfjalksdjf')
 						this.props.logInUser(response.data.userData)
 					}
 				})
-			}
 		}
 
 		render() {

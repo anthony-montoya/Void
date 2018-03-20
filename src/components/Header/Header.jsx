@@ -30,7 +30,7 @@ class Header extends React.Component {
 	}
 
 	componentDidMount() {
-		this.checkAuthToken()
+		// this.checkAuthToken()
 		this.setLinks(this.props)
 	}
 
@@ -38,14 +38,14 @@ class Header extends React.Component {
 		this.setLinks(nextProps)
 	}
 
-	checkAuthToken = () => {
-		if(localStorage.getItem('auth_token')) {
-			axios.get('http://localhost:4000/authenticateAuthToken/' + localStorage.getItem('auth_token')).then(response => {
-				console.log(response.data)
-				if(response.data.userData) this.props.logInUser(response.data.userData)
-			})
-		}
-	}
+	// checkAuthToken = () => {
+	// 	if(localStorage.getItem('auth_token')) {
+	// 		axios.get('http://localhost:4000/authenticateAuthToken/' + localStorage.getItem('auth_token')).then(response => {
+	// 			console.log(response.data)
+	// 			if(response.data.userData) this.props.logInUser(response.data.userData)
+	// 		})
+	// 	}
+	// }
 
 	setLinks = (props) => {
 		let headerLinks = [
@@ -131,7 +131,6 @@ class Header extends React.Component {
 	}
 
 	render() {
-		console.log(this.props)
 		return (
 			<HeaderContainer>
 				<LogoContainer>

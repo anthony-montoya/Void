@@ -39,7 +39,7 @@ class Login extends Component {
 		})
 	}
 
-	loginAndClearState = () => {
+	Login = () => {
 		axios.get(`http://localhost:4000/login_user/${this.state.vb_username}/${this.state.password}`).then(response => {
 			if (response.data.token) {
 				localStorage.setItem('auth_token', response.data.token)
@@ -92,7 +92,7 @@ class Login extends Component {
 							<ButtonContainer>
 								<HeroButton
 									width="60%"
-									onClick={this.loginAndClearState}>
+									onClick={this.Login}>
 									LOGIN
 								</HeroButton>
 								<InputError>{this.state.loginError}</InputError>

@@ -52,7 +52,7 @@ module.exports = {
                 bcrypt.compare(password, result.rows[0].passwd, (err, verified) => {
                     if (verified) {
                         console.log('Token has been created for: ' + vb_username)
-                        let token = jwt.sign({ name: 'auth_token', vb_username: vb_username }, 'secret', { expiresIn: '15sec' })
+                        let token = jwt.sign({ name: 'auth_token', vb_username: vb_username }, 'secret', { expiresIn: '1h' })
                         response.status(200).send({ token, userData: result.rows[0] });
                     }
                 })

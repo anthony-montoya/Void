@@ -16,14 +16,14 @@ export default (
 	<Switch>
 		<Route component={Landing} path='/' exact />
 		<Route component={Login} path='/login' />
+		<Route component={Logout} path='/logout' />
 		<Route component={Register} path='/register' />
-		<Route component={Profile} path='/vb-profile/:vb_username' />
-		<Route component={Authentication(FindTeams)} path='/find-teams' />
 		<Route component={FindPlayers} path='/players' />
 		<Route component={Team} path='/vb-teams' />
 		<Route component={Team} path='/vb-teams/:team_id' />
+		<Route component={Authentication(Profile)} path='/vb-profile/:vb_username' />
+		<Route component={Authentication(FindTeams)} path='/find-teams' />
 		<Route component={Authentication(Compete)} path='/compete' />
-		<Route component={Logout} path='/logout' />
 		<Route component={NotFound} path='*' />
 	</Switch>
 )
