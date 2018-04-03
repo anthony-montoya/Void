@@ -35,6 +35,7 @@ class Authenticate extends React.Component {
   constructor(props) {
     super(props)
 
+    this.Component = props.component
     this.state = {
       AuthenticateJSX: <AuthenticatingContainer />
     }
@@ -42,13 +43,10 @@ class Authenticate extends React.Component {
 
   componentWillMount() {
     let context = this.props.context
-    if (localStorage.getItem('auth_token')) {
+    let auth_token = localStorage.getItem('auth_token')
+    if (auth_token) {
       axios
-        .get(
-          `http://localhost:4000/authenticateAuthToken/${localStorage.getItem(
-            'auth_token'
-          )}`
-        )
+        .get(`http://localhost:4000/authenticateAuthToken/${auth_token}`)
         .then(response => {
           if (response.data.error) {
             this.logOutUser(context)
@@ -72,11 +70,10 @@ class Authenticate extends React.Component {
       <Context.Consumer>
         {context => {
           if (context.state.isLoggedIn === true) {
-            let Component = this.props.component
-            return <Component {...this.props} />
-          } else if (context.state.isLoggedIn === false) {
+            return <this.Component {...this.props} />
+          } else {
             return this.state.AuthenticateJSX
-          } else return <Redirect to="/" />
+          }
         }}
       </Context.Consumer>
     )

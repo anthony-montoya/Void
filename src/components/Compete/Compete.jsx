@@ -1,5 +1,11 @@
 import React from 'react'
+import { Switch, Route, Link } from 'react-router-dom'
 import { Context } from '../../ContextAPI'
+import {
+  CompeteTab,
+  ComponentContainer,
+  ButtonsContainer
+} from './CompeteStyles'
 import OpenScrims from './OpenScrims'
 import OpenTournaments from './OpenTournaments'
 
@@ -8,38 +14,58 @@ class Compete extends React.Component {
     super()
 
     this.state = {
-      showScrimmages: true,
-      showTournaments: false
+      scrimSelected: true,
+      tournamentSelected: false
     }
   }
-
   componentDidMount() {
     this.props.context.setHeaderTab(0)
   }
 
-  updateState(state) {
-    if (state === 'scrimmage')
+  updateButtons = button => {
+    if (button === 'tournament' && this.state.tournamentSelected === false)
       this.setState({
-        showScrimmages: true,
-        showTournaments: false
+        scrimSelected: false,
+        tournamentSelected: true
       })
-    else
+    else if (button === 'scrim' && this.state.scrimSelected === false)
       this.setState({
-        showScrimmages: false,
-        showTournaments: true
+        scrimSelected: true,
+        tournamentSelected: false
       })
   }
 
   render() {
     return (
-      <div>
-        <header>
-          <h1 onClick={() => this.updateState('scrimmage')}>SCRIMMAGES</h1>
-          <h1 onClick={() => this.updateState('tournament')}>TOURNAMENTS</h1>
-        </header>
-        {this.state.showScrimmages && <OpenScrims />}
-        {this.state.showTournaments && <OpenTournaments />}
-      </div>
+      <ComponentContainer>
+        <ButtonsContainer>
+          <Link to="/compete/open-scrimmages">
+            <CompeteTab selected={this.state.scrimSelected}>
+              SCRIMMAGES
+            </CompeteTab>
+          </Link>
+
+          <Link to="/compete/open-tournaments">
+            <CompeteTab selected={this.state.tournamentSelected}>
+              TOURNAMENTS
+            </CompeteTab>
+          </Link>
+        </ButtonsContainer>
+
+        <Switch>
+          <Route
+            path="/compete/open-scrimmages"
+            component={() => <OpenScrims updateButtons={this.updateButtons} />}
+          />
+          <Route
+            path="/compete/open-tournaments"
+            component={() => (
+              <OpenTournaments updateButtons={this.updateButtons} />
+            )}
+            updateButtons={this.updateButtons}
+          />
+        </Switch>
+      </ComponentContainer>
     )
   }
 }

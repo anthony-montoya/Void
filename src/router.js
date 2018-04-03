@@ -26,7 +26,7 @@ export default (
       path="/vb-profile/:vb_username"
     />
     <Route component={Authentication(FindTeams)} path="/find-teams" />
-    <Route component={Authentication(ContextCompete)} path="/compete" />
-    <Route component={NotFound} path="*" />
+    <Route component={ContextCompete} path="/compete" />
+    {/* <Route component={NotFound} path="*" /> */}
   </Switch>
 )

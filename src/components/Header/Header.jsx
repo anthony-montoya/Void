@@ -46,7 +46,7 @@ class Header extends React.Component {
   render() {
     let context = this.props.context
     let loggedInHeaderLinks = [
-      '/compete',
+      '/compete/open-scrimmages',
       '/find-players',
       `/vb-teams/${context.state.userData.uplay}`,
       `/vb-profile/${context.state.userData.vb_username}`,
