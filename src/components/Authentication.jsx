@@ -1,54 +1,84 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Context } from '../ContextAPI'
 import { logInUser, logOutUser } from '.././ducks/reducer'
 import axios from 'axios'
 import styled from 'styled-components'
 
 let AuthenticatingContainer = styled.div`
-	width: 100vw;
-	height: 100vh;
-	background-color: #383838;
+  width: 100vw;
+  height: 100vh;
+  background-color: #383838;
 `
 
 export function Authentication(Component) {
-	class Authenticate extends React.Component {
-		constructor() {
-			super()
+  class ContextAuthenticate extends React.Component {
+    render() {
+      return (
+        <Context.Consumer>
+          {context => (
+            <Authenticate
+              context={context}
+              {...this.props}
+              component={Component}
+            />
+          )}
+        </Context.Consumer>
+      )
+    }
+  }
+  return ContextAuthenticate
+}
 
-			this.state = {
-				AuthenticateJSX: <AuthenticatingContainer />
-			}
-		}
+class Authenticate extends React.Component {
+  constructor(props) {
+    super(props)
 
-		componentWillMount() {
-				axios.get(`http://localhost:4000/authenticateAuthToken/${localStorage.getItem('auth_token')}`).then(response => {
-					if (response.data.error) {
-						this.setState({
-							AuthenticateJSX: <Redirect to='/login' />
-						})
-						this.props.logOutUser()
-						alert('You must be signed in!')
-					} else {
-						console.log(response.data.userData, 'alksdfjalksdjf')
-						this.props.logInUser(response.data.userData)
-					}
-				})
-		}
+    this.state = {
+      AuthenticateJSX: <AuthenticatingContainer />
+    }
+  }
 
-		render() {
-			if (this.props.loggedInStatus) {
-				return <Component {...this.props} />
-			} else if (!this.props.loggedInStatus) {
-				return this.state.AuthenticateJSX
-			} else return <Redirect to='/' />
-		}
-	}
-	function mapStateToProps(state) {
-		return {
-			loggedInStatus: state.loggedInStatus
-		}
-	}
+  componentWillMount() {
+    let context = this.props.context
+    if (localStorage.getItem('auth_token')) {
+      axios
+        .get(
+          `http://localhost:4000/authenticateAuthToken/${localStorage.getItem(
+            'auth_token'
+          )}`
+        )
+        .then(response => {
+          if (response.data.error) {
+            this.logOutUser(context)
+          } else {
+            context.logInUser(response.data.userData)
+          }
+        })
+    } else this.logOutUser(context)
+  }
 
-	return connect(mapStateToProps, { logInUser, logOutUser })(Authenticate)
+  logOutUser = context => {
+    context.logOutUser()
+    alert('You must be signed in!')
+    this.setState({
+      AuthenticateJSX: <Redirect to="/login" />
+    })
+  }
+
+  render() {
+    return (
+      <Context.Consumer>
+        {context => {
+          if (context.state.isLoggedIn === true) {
+            let Component = this.props.component
+            return <Component {...this.props} />
+          } else if (context.state.isLoggedIn === false) {
+            return this.state.AuthenticateJSX
+          } else return <Redirect to="/" />
+        }}
+      </Context.Consumer>
+    )
+  }
 }

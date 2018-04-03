@@ -1,25 +1,35 @@
 import React, { Component } from 'react'
+import { Context } from '../../ContextAPI'
 import { PageContainer } from '../../GlobalStyles'
 import ProfileHeader from './ProfileHeader'
 import ProfileRanks from './PofileRanks'
 import ProfileMatches from './ProfileMatches'
 import ProfileTournaments from './ProfileTournaments'
 
+let stateContext = null
 class Profile extends Component {
   componentDidMount() {
     console.log(this.props.match.params)
+    stateContext.setHeaderTab(3)
   }
   render() {
     return (
-      <PageContainer>
-        <ProfileHeader />
+      <Context.Consumer>
+        {context => {
+          stateContext = context
+          return (
+            <PageContainer>
+              <ProfileHeader />
 
-        <ProfileRanks />
+              <ProfileRanks />
 
-        <ProfileMatches />
+              <ProfileMatches />
 
-        <ProfileTournaments />
-      </PageContainer>
+              <ProfileTournaments />
+            </PageContainer>
+          )
+        }}
+      </Context.Consumer>
     )
   }
 }
