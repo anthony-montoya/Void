@@ -70,14 +70,8 @@ class Compete extends React.Component {
   }
 }
 
-class ContextCompete extends React.Component {
-  render() {
-    return (
-      <Context.Consumer>
-        {context => <Compete context={context} {...this.props} />}
-      </Context.Consumer>
-    )
-  }
-}
-
-export default ContextCompete
+export default props => (
+  <Context.Consumer>
+    {context => <Compete context={context} {...this.props} />}
+  </Context.Consumer>
+)

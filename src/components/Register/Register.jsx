@@ -67,7 +67,7 @@ class Register extends React.Component {
   }
 
   render() {
-    if (this.props.loggedInStatus) {
+    if (this.props.context.state.loggedInStatus) {
       return <Redirect to={`/vb-profile/${this.props.profile_id}`} />
     } else
       return (
@@ -86,8 +86,11 @@ class Register extends React.Component {
                 </InputTitle>
                 <Input
                   value={this.state.vb_username}
-                  onChange={e =>
-                    this.updateUserRegistration('vb_username', e.target.value)
+                  onChange={input =>
+                    this.updateUserRegistration(
+                      'vb_username',
+                      input.target.value
+                    )
                   }
                 />
                 <InputError>{this.state.usernameError}</InputError>
@@ -97,8 +100,8 @@ class Register extends React.Component {
                 <InputTitle>UPLAY NICKNAME</InputTitle>
                 <Input
                   value={this.state.uplay}
-                  onChange={e =>
-                    this.updateUserRegistration('uplay', e.target.value)
+                  onChange={input =>
+                    this.updateUserRegistration('uplay', input.target.value)
                   }
                 />
                 <InputError>{this.state.usernameError}</InputError>
@@ -108,8 +111,8 @@ class Register extends React.Component {
                 <InputTitle>EMAIL</InputTitle>
                 <Input
                   value={this.state.email}
-                  onChange={e =>
-                    this.updateUserRegistration('email', e.target.value)
+                  onChange={input =>
+                    this.updateUserRegistration('email', input.target.value)
                   }
                 />
                 <InputError>{this.state.usernameError}</InputError>
@@ -120,8 +123,8 @@ class Register extends React.Component {
                 <Input
                   type="password"
                   value={this.state.password}
-                  onChange={e =>
-                    this.updateUserRegistration('password', e.target.value)
+                  onChange={input =>
+                    this.updateUserRegistration('password', input.target.value)
                   }
                 />
                 <InputError>{this.state.passwordError}</InputError>
@@ -140,14 +143,8 @@ class Register extends React.Component {
   }
 }
 
-class ContextRegister extends React.Component {
-  render() {
-    return (
-      <Context.Consumer>
-        {context => <Register context={context} {...this.props} />}
-      </Context.Consumer>
-    )
-  }
-}
-
-export default ContextRegister
+export default props => (
+  <Context.Consumer>
+    {context => <Register context={context} {...props} />}
+  </Context.Consumer>
+)

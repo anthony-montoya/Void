@@ -13,22 +13,29 @@ let AuthenticatingContainer = styled.div`
 `
 
 export function Authentication(Component) {
-  class ContextAuthenticate extends React.Component {
-    render() {
-      return (
-        <Context.Consumer>
-          {context => (
-            <Authenticate
-              context={context}
-              {...this.props}
-              component={Component}
-            />
-          )}
-        </Context.Consumer>
-      )
-    }
-  }
-  return ContextAuthenticate
+  // class ContextAuthenticate extends React.Component {
+  //   render() {
+  //     return (
+  //       <Context.Consumer>
+  //         {context => (
+  //           <Authenticate
+  //             context={context}
+  //             {...this.props}
+  //             component={Component}
+  //           />
+  //         )}
+  //       </Context.Consumer>
+  //     )
+  //   }
+  // }
+  // return ContextAuthenticate
+  return props => (
+    <Context.Consumer>
+      {context => (
+        <Authenticate context={context} {...props} component={Component} />
+      )}
+    </Context.Consumer>
+  )
 }
 
 class Authenticate extends React.Component {
@@ -42,23 +49,22 @@ class Authenticate extends React.Component {
   }
 
   componentWillMount() {
-    let context = this.props.context
     let auth_token = localStorage.getItem('auth_token')
     if (auth_token) {
       axios
         .get(`http://localhost:4000/authenticateAuthToken/${auth_token}`)
         .then(response => {
           if (response.data.error) {
-            this.logOutUser(context)
+            this.logOutUser()
           } else {
-            context.logInUser(response.data.userData)
+            this.props.context.logInUser(response.data.userData)
           }
         })
-    } else this.logOutUser(context)
+    } else this.logOutUser()
   }
 
-  logOutUser = context => {
-    context.logOutUser()
+  logOutUser = () => {
+    this.props.context.logOutUser()
     alert('You must be signed in!')
     this.setState({
       AuthenticateJSX: <Redirect to="/login" />
@@ -66,16 +72,11 @@ class Authenticate extends React.Component {
   }
 
   render() {
-    return (
-      <Context.Consumer>
-        {context => {
-          if (context.state.isLoggedIn === true) {
-            return <this.Component {...this.props} />
-          } else {
-            return this.state.AuthenticateJSX
-          }
-        }}
-      </Context.Consumer>
-    )
+    let Component = this.Component
+    if (this.props.context.state.isLoggedIn === true) {
+      return <Component {...this.props} />
+    } else {
+      return this.state.AuthenticateJSX
+    }
   }
 }
